@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "241928844251",
+    "firebase_url": "https://ict2102-dashboard.firebaseio.com",
+    "project_id": "ict2102-dashboard",
+    "storage_bucket": "ict2102-dashboard.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:241928844251:android:a332b38b4963a75767adfe",
+        "android_client_info": {
+          "package_name": "com.dashboard"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "241928844251-db7oqcadlevjkob7vdmt5ts0n87h3oqo.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCmTKxhzjFkNtP9CLX-8_0J6Yy1yNCtd9s"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "241928844251-db7oqcadlevjkob7vdmt5ts0n87h3oqo.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
