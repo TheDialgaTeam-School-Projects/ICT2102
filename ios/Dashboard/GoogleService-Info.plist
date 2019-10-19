@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>241928844251-hajolv92rhvedn32vi02go0ohifcfjdl.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.241928844251-hajolv92rhvedn32vi02go0ohifcfjdl</string>
+	<key>API_KEY</key>
+	<string>AIzaSyAz0qsVq5GW1AurVSP6PxMHl8M6DSA07L8</string>
+	<key>GCM_SENDER_ID</key>
+	<string>241928844251</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>org.reactjs.native.example.Dashboard</string>
+	<key>PROJECT_ID</key>
+	<string>ict2102-dashboard</string>
+	<key>STORAGE_BUCKET</key>
+	<string>ict2102-dashboard.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:241928844251:ios:3b4e5b06c5849d5467adfe</string>
+	<key>DATABASE_URL</key>
+	<string>https://ict2102-dashboard.firebaseio.com</string>
+</dict>
+</plist>
