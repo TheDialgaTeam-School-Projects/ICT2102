@@ -1,5 +1,3 @@
-import auth from '@react-native-firebase/auth';
-
 export default class UserManagement {
   /**
    * Authenticate the user with email and password.
@@ -20,11 +18,6 @@ export default class UserManagement {
       }
 
       try {
-        const userCredential = await auth().signInWithEmailAndPassword(
-          email,
-          password,
-        );
-
         resolve();
       } catch (e) {
         reject({title: 'Error', message: e.message});
