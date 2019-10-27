@@ -1,13 +1,9 @@
-export default class Controller {
+export class Controller {
   constructor(view) {
-    /*******************************************************************************************************************
-     * Important:
-     * Please remember to bind your functions to preserve the object state to this class.
-     * Otherwise, it would use the object state where it is called which can be undesirable.
-     ******************************************************************************************************************/
     this.view = view;
     this.view.state = {};
     this.getParam = this.getParam.bind(this);
+    this.goBack = this.goBack.bind(this);
     this.navigate = this.navigate.bind(this);
   }
 
@@ -42,6 +38,13 @@ export default class Controller {
    */
   getParam(param, fallback) {
     return this.props.navigation.getParam(param, fallback);
+  }
+
+  /**
+   * Navigate into the previous screen.
+   */
+  goBack() {
+    this.props.navigation.goBack();
   }
 
   /**
