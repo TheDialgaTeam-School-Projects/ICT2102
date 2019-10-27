@@ -7,6 +7,6 @@ export class PatientInformationController extends Controller {
   }
 
   onPressLoginButton() {
-    this.navigate('Login');
+    this.navigate('StaffLogin');
   }
 }

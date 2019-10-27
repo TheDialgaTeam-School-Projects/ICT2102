@@ -1,12 +1,21 @@
 import React, {Component} from 'react';
-import {View} from 'react-native';
-import {Button, Container, Form, Input, Item, Label, Text} from 'native-base';
+import {StyleSheet} from 'react-native';
+import {
+  Button,
+  Container,
+  Form,
+  Input,
+  Item,
+  Label,
+  Text,
+  View,
+} from 'native-base';
 import {Col, Grid, Row} from 'react-native-easy-grid';
 import {LoadingModalComponent} from '../Component/LoadingModal';
-import {LoginScreenController} from '../../controller/Main/LoginScreen';
+import {LoginScreenController} from '../../controller/Main/StaffLogin';
 import {GlobalCSS} from '../../css/Global';
 
-export class LoginScreenView extends Component {
+export class StaffLoginView extends Component {
   constructor(props) {
     super(props);
     this.controller = new LoginScreenController(this);
@@ -18,17 +27,24 @@ export class LoginScreenView extends Component {
   }
 
   render() {
+    const css = StyleSheet.create({
+      centerContainer: {
+        flex: 1,
+        justifyContent: 'center',
+      },
+    });
+
     return (
-      <Container>
+      <Container style={css.centerContainer}>
         <Form>
           <Item fixedLabel>
-            <Label>User ID:</Label>
+            <Label>Staff Id:</Label>
             <Input
-              placeholder="User ID..."
+              placeholder="Staff Id..."
               autoCorrect={false}
               autoCompleteType="username"
               textContentType="username"
-              onChangeText={this.controller.onChangeTextUserIdLabel}
+              onChangeText={this.controller.onChangeTextStaffIdInput}
               autoFocus={true}
             />
           </Item>
@@ -40,10 +56,10 @@ export class LoginScreenView extends Component {
               autoCompleteType="password"
               textContentType="password"
               secureTextEntry={true}
-              onChangeText={this.controller.onChangeTextPasswordLabel}
+              onChangeText={this.controller.onChangeTextPasswordInput}
             />
           </Item>
-          <View style={GlobalCSS.Separator} />
+          <View padder />
           <Grid>
             <Row>
               <Col size={1} />

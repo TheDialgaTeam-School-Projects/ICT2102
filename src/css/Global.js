@@ -1,27 +1,31 @@
 import {StyleSheet} from 'react-native';
 
+const color = {
+  blue: '#77aaff',
+  blue2: '#99ccff',
+  blue3: '#bbeeff',
+  blue4: '#5588ff',
+  blue5: '#3366ff',
+};
+
 export const GlobalCSS = StyleSheet.create({
-  header: {},
-  button: {},
+  header: {
+    height: 100,
+    backgroundColor: color.blue5,
+  },
+  headerTitle: {
+    fontSize: 72,
+  },
+  button: {
+    backgroundColor: color.blue5,
+  },
+  buttonAlt: {
+    backgroundColor: color.blue3,
+  },
   buttonLabel: {
     width: '100%',
     textAlign: 'center',
     fontSize: 24,
-  },
-  Separator: {
-    paddingVertical: 10,
-  },
-  formRow: {
-    paddingBottom: 10,
-  },
-  formLabel: {
-    fontSize: 18,
-    paddingBottom: 10,
-  },
-  formInput: {
-    borderWidth: 2,
-    borderColor: 'lightgrey',
-    height: 40,
   },
   loadingContainer: {
     flex: 1,

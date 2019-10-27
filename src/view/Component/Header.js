@@ -1,27 +1,23 @@
 import React, {Component} from 'react';
-import {Body, Header, Left, Right, Title} from 'native-base';
-import {GlobalCSS} from '../../css/Global';
+import {StatusBar, StyleSheet} from 'react-native';
+import {Header, View} from 'native-base';
 
 export class HeaderComponent extends Component {
   constructor(props) {
     super(props);
-    this.props.titleText = '';
   }
 
   render() {
-    let headerStyle = {
-      ...GlobalCSS.header,
-      ...this.props.style,
-    };
+    const css = StyleSheet.create({
+      safeArea: {
+        marginTop: StatusBar.currentHeight,
+      },
+    });
 
-    return (
-      <Header style={headerStyle}>
-        <Left />
-        <Body>
-          <Title>{this.props.titleText ?? ''}</Title>
-        </Body>
-        <Right />
-      </Header>
-    );
+    if (this.props?.hasHeader ?? true) {
+      return <Header transparent />;
+    } else {
+      return <View style={css.safeArea} />;
+    }
   }
 }

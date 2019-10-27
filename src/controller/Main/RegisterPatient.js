@@ -1,16 +1,16 @@
-import {Controller} from '../Controller';
 import {Alert} from 'react-native';
-import {UserManagement} from '../../service/UserManagement';
+import {Controller} from '../Controller';
 
-export class LoginScreenController extends Controller {
+export class RegisterPatientController extends Controller {
   constructor(view) {
     super(view);
     this.componentDidMount = this.componentDidMount.bind(this);
     this.didFocus = this.didFocus.bind(this);
-    this.onChangeTextUserIdLabel = this.onChangeTextUserIdLabel.bind(this);
-    this.onChangeTextPasswordLabel = this.onChangeTextPasswordLabel.bind(this);
+    this.onChangeTextPatientIdInput = this.onChangeTextPatientIdInput.bind(
+      this,
+    );
     this.onPressBackButton = this.onPressBackButton.bind(this);
-    this.onPressLoginButton = this.onPressLoginButton.bind(this);
+    this.onPressSubmitButton = this.onPressSubmitButton.bind(this);
   }
 
   /**
@@ -18,8 +18,7 @@ export class LoginScreenController extends Controller {
    */
   componentDidMount() {
     this.state = {
-      userId: '',
-      password: '',
+      patientId: '',
       isLoading: false,
     };
   }
@@ -32,19 +31,11 @@ export class LoginScreenController extends Controller {
   }
 
   /**
-   * This event update the user id state during onChangeText event.
+   * This event update the patient id state during onChangeText event.
    * @param value TextInput value.
    */
-  onChangeTextUserIdLabel(value) {
-    this.state = {userId: value};
-  }
-
-  /**
-   * This event update the password state during onChangeText event.
-   * @param value TextInput value.
-   */
-  onChangeTextPasswordLabel(value) {
-    this.state = {password: value};
+  onChangeTextPatientIdInput(value) {
+    this.state = {patientId: value};
   }
 
   /**
@@ -55,15 +46,26 @@ export class LoginScreenController extends Controller {
   }
 
   /**
-   * This event triggers when login button is pressed.
-   * @returns {Promise<void>}
+   * This event triggers when the submit button is pressed.
    */
-  async onPressLoginButton() {
+  onPressSubmitButton() {
     try {
       this.state = {isLoading: true};
+
       // TODO: PLEASE REMOVE THIS COMMENT TO ENABLE THIS MODULE.
       // This is intentionally disabled so that we aren't wasting daily API calls for testing.
-      // await UserManagement.login(this.state.userId, this.state.password);
+      /*
+      const staffInformation = await StaffManagement.login(
+        this.state.staffId,
+        this.state.password,
+      );
+
+      await AsyncStorage.setItem(
+        'staffInformation',
+        JSON.stringify(staffInformation.toJsonObj()),
+      );
+      */
+
       this.state = {isLoading: false};
       this.navigate('Patient');
     } catch (e) {

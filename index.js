@@ -3,11 +3,12 @@ import {AppRegistry} from 'react-native';
 import {createAppContainer, createSwitchNavigator} from 'react-navigation';
 import {createStackNavigator} from 'react-navigation-stack';
 import {createBottomTabNavigator} from 'react-navigation-tabs';
-import {LoginScreenView} from './src/view/Main/LoginScreen';
-import {FooterTabComponent} from './src/view/Component/FooterTabs';
 import {HeaderComponent} from './src/view/Component/Header';
+import {FooterTabComponent} from './src/view/Component/FooterTabs';
 import {PatientInformationView} from './src/view/Main/PatientInformation';
-import {TestView} from './src/view/Main/Test';
+import {StaffLoginView} from './src/view/Main/StaffLogin';
+import {RegisterPatientView} from './src/view/Main/RegisterPatient';
+import {RemindersView} from './src/view/Patient/Reminders';
 
 const routes = createSwitchNavigator({
   Main: createStackNavigator(
@@ -15,8 +16,14 @@ const routes = createSwitchNavigator({
       PatientInformation: {
         screen: PatientInformationView,
       },
-      Login: {
-        screen: LoginScreenView,
+      StaffLogin: {
+        screen: StaffLoginView,
+      },
+      RegisterPatient: {
+        screen: RegisterPatientView,
+        navigationOptions: () => ({
+          header: <HeaderComponent hasHeader={false} />,
+        }),
       },
     },
     {
@@ -28,28 +35,22 @@ const routes = createSwitchNavigator({
   Patient: createBottomTabNavigator(
     {
       Reminders: {
-        screen: TestView,
-        navigationOptions: () => ({
-          tabBarLabel: 'Reminders',
-        }),
+        screen: RemindersView,
       },
       Medicine: {
-        screen: TestView,
+        screen: RemindersView,
       },
       CaseNotes: {
-        screen: TestView,
-        navigationOptions: () => ({
-          tabBarLabel: 'Case Notes',
-        }),
+        screen: RemindersView,
       },
       Food: {
-        screen: TestView,
+        screen: RemindersView,
       },
       Vitals: {
-        screen: TestView,
+        screen: RemindersView,
       },
       Faq: {
-        screen: TestView,
+        screen: RemindersView,
       },
     },
     {
