@@ -15,16 +15,24 @@ import {
 import {LoadingModalComponent} from '../Component/LoadingModal';
 import {RegisterPatientController} from '../../controller/Main/RegisterPatient';
 import {GlobalCSS} from '../../css/Global';
+import {CustomHeaderComponent} from "../Component/CustomHeader";
 
 export class RegisterPatientView extends Component {
   constructor(props) {
     super(props);
     this.controller = new RegisterPatientController(this);
-    this.props.navigation.addListener('didFocus', this.controller.didFocus);
+    this.didFocusEvent = this.props.navigation.addListener(
+      'didFocus',
+      this.controller.didFocus,
+    );
   }
 
   componentDidMount() {
     this.controller.componentDidMount();
+  }
+
+  componentWillUnmount() {
+    this.didFocusEvent.remove();
   }
 
   render() {
@@ -37,22 +45,13 @@ export class RegisterPatientView extends Component {
 
     return (
       <Container>
-        <View style={GlobalCSS.header}>
-          <Grid>
-            <Row>
-              <Col />
-              <Col>
-                <Title style={GlobalCSS.headerTitle}>REGISTER PATIENT</Title>
-              </Col>
-              <Col />
-            </Row>
-          </Grid>
-        </View>
+        <CustomHeaderComponent headerTitle="REGISTER PATIENT" {...this.props} />
         <View style={css.centerContainer}>
           <Form>
             <Item fixedLabel>
-              <Label>Enter/Scan Patient ID:</Label>
+              <Label style={GlobalCSS.formLabel}>Enter/Scan Patient ID:</Label>
               <Input
+                style={GlobalCSS.formInput}
                 placeholder="Patient ID..."
                 autoCorrect={false}
                 onChangeText={this.controller.onChangeTextPatientIdInput}

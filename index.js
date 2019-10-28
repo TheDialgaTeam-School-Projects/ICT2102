@@ -8,7 +8,9 @@ import {FooterTabComponent} from './src/view/Component/FooterTabs';
 import {PatientInformationView} from './src/view/Main/PatientInformation';
 import {StaffLoginView} from './src/view/Main/StaffLogin';
 import {RegisterPatientView} from './src/view/Main/RegisterPatient';
-import {RemindersView} from './src/view/Patient/Reminders';
+import {RemindersView} from './src/view/Patient/Reminders/Reminders';
+import {MedicineView} from './src/view/Patient/Medicine/Medicine';
+import {AddRemindersView} from './src/view/Patient/Reminders/AddReminders';
 
 const routes = createSwitchNavigator({
   Main: createStackNavigator(
@@ -21,9 +23,6 @@ const routes = createSwitchNavigator({
       },
       RegisterPatient: {
         screen: RegisterPatientView,
-        navigationOptions: () => ({
-          header: <HeaderComponent hasHeader={false} />,
-        }),
       },
     },
     {
@@ -34,23 +33,50 @@ const routes = createSwitchNavigator({
   ),
   Patient: createBottomTabNavigator(
     {
-      Reminders: {
-        screen: RemindersView,
-      },
+      RemindersTab: createStackNavigator(
+        {
+          Reminders: {
+            screen: RemindersView,
+          },
+          AddReminders: {
+            screen: AddRemindersView,
+          },
+        },
+        {
+          defaultNavigationOptions: () => ({
+            header: <HeaderComponent />,
+          }),
+        },
+      ),
       Medicine: {
-        screen: RemindersView,
+        screen: MedicineView,
+        navigationOptions: () => ({
+          title: 'Medicine',
+        }),
       },
       CaseNotes: {
         screen: RemindersView,
+        navigationOptions: () => ({
+          title: 'Case Notes',
+        }),
       },
       Food: {
         screen: RemindersView,
+        navigationOptions: () => ({
+          title: 'Food',
+        }),
       },
       Vitals: {
         screen: RemindersView,
+        navigationOptions: () => ({
+          title: 'Vitals',
+        }),
       },
       Faq: {
         screen: RemindersView,
+        navigationOptions: () => ({
+          title: 'Faq',
+        }),
       },
     },
     {

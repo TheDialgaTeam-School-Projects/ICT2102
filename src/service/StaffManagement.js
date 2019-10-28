@@ -1,5 +1,6 @@
 import firestore from '@react-native-firebase/firestore';
 import {StaffModel} from '../model/Staff';
+import {Config} from '../Config';
 
 export class StaffManagement {
   /**
@@ -21,24 +22,40 @@ export class StaffManagement {
           return;
         }
 
-        const query = await firestore()
-          .collection('staffs')
-          .where('staffId', '==', staffId)
-          .get();
+        if (Config.useInternalCache) {
+          const staffModel = StaffModel.createModel(Config.staffInformation);
 
-        if (query.size === 0) {
-          reject({title: 'Error', message: 'Staff does not exist.'});
-          return;
+          if (staffModel.staffId !== staffId) {
+            reject({title: 'Error', message: 'Staff does not exist.'});
+            return;
+          }
+
+          if (staffModel.staffPassword !== password) {
+            reject({title: 'Error', message: 'Password is incorrect.'});
+            return;
+          }
+
+          resolve(staffModel);
+        } else {
+          const query = await firestore()
+            .collection('staffs')
+            .where('staffId', '==', staffId)
+            .get();
+
+          if (query.size === 0) {
+            reject({title: 'Error', message: 'Staff does not exist.'});
+            return;
+          }
+
+          const staffModel = StaffModel.createModel(query.docs[0].data());
+
+          if (staffModel.staffPassword !== password) {
+            reject({title: 'Error', message: 'Password is incorrect.'});
+            return;
+          }
+
+          resolve(staffModel);
         }
-
-        const staffModel = StaffModel.createModel(query.docs[0].data());
-
-        if (staffModel.staffPassword !== password) {
-          reject({title: 'Error', message: 'Password is incorrect.'});
-          return;
-        }
-
-        resolve(staffModel);
       } catch (e) {
         reject({title: 'Error', message: e.message});
       }

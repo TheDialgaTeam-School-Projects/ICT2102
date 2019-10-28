@@ -1,5 +1,7 @@
 import {Alert} from 'react-native';
+import AsyncStorage from '@react-native-community/async-storage';
 import {Controller} from '../Controller';
+import {PatientManagement} from '../../service/PatientManagement';
 
 export class RegisterPatientController extends Controller {
   constructor(view) {
@@ -48,23 +50,18 @@ export class RegisterPatientController extends Controller {
   /**
    * This event triggers when the submit button is pressed.
    */
-  onPressSubmitButton() {
+  async onPressSubmitButton() {
     try {
       this.state = {isLoading: true};
 
-      // TODO: PLEASE REMOVE THIS COMMENT TO ENABLE THIS MODULE.
-      // This is intentionally disabled so that we aren't wasting daily API calls for testing.
-      /*
-      const staffInformation = await StaffManagement.login(
-        this.state.staffId,
-        this.state.password,
+      const patientInformation = await PatientManagement.getPatientById(
+        this.state.patientId,
       );
 
       await AsyncStorage.setItem(
-        'staffInformation',
-        JSON.stringify(staffInformation.toJsonObj()),
+        'patientInformation',
+        patientInformation.toJson(),
       );
-      */
 
       this.state = {isLoading: false};
       this.navigate('Patient');
