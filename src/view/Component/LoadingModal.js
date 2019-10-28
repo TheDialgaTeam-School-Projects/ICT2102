@@ -1,15 +1,8 @@
 import React, {Component} from 'react';
 import {ActivityIndicator, Modal, View} from 'react-native';
-import GlobalCSS from '../../css/Global';
+import {GlobalCSS} from '../../css/Global';
 
-export type Props = $ReadOnly<{|
-  /**
-   * The `visible` prop determines whether loading modal is visible.
-   */
-  visible: boolean,
-|}>;
-
-export default class LoadingModal extends Component<Props> {
+export class LoadingModalComponent extends Component {
   constructor(props) {
     super(props);
   }
