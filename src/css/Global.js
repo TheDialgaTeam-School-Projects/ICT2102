@@ -99,6 +99,9 @@ const marginCss = StyleSheet.create({
 });
 
 const fontSizeCss = StyleSheet.create({
+  fontSizeXXSmall: {
+    fontSize: 8 * 2,
+  },
   fontSizeXSmall: {
     fontSize: 10 * 2,
   },
@@ -150,8 +153,8 @@ const footerTabCss = StyleSheet.create({
     borderWidth: 1,
   },
   footerTabLabel: {
+    ...fontSizeCss.fontSizeXXSmall,
     color: '#000000',
-    fontSize: 15,
   },
 });
 
@@ -163,6 +166,9 @@ const buttonCss = StyleSheet.create({
     ...fontSizeCss.fontSizeSmall,
     width: '100%',
     textAlign: 'center',
+  },
+  buttonIconLabel: {
+    ...fontSizeCss.fontSizeSmall,
   },
   buttonHeader: {
     backgroundColor: color.blue3,
@@ -194,6 +200,16 @@ const patientInformationCss = StyleSheet.create({
   },
 });
 
+const reminderComponentCss = StyleSheet.create({
+  reminderComponentHeaderText: {
+    ...fontSizeCss.fontSizeXSmall,
+    fontWeight: 'bold',
+  },
+  reminderComponentText: {
+    ...fontSizeCss.fontSizeXSmall,
+  },
+});
+
 export const GlobalCSS = StyleSheet.create({
   ...paddingCss,
   ...marginCss,
@@ -203,6 +219,7 @@ export const GlobalCSS = StyleSheet.create({
   ...buttonCss,
   ...formCss,
   ...patientInformationCss,
+  ...reminderComponentCss,
   loadingContainer: {
     flex: 1,
     justifyContent: 'center',
@@ -217,8 +234,5 @@ export const GlobalCSS = StyleSheet.create({
   },
   alignItemsBottom: {
     alignItems: 'flex-end',
-  },
-  reminderText: {
-    fontSize: 24,
   },
 });

@@ -10,7 +10,7 @@ import {StaffLoginView} from './src/view/Main/StaffLogin';
 import {RegisterPatientView} from './src/view/Main/RegisterPatient';
 import {RemindersView} from './src/view/Patient/Reminders/Reminders';
 import {MedicineView} from './src/view/Patient/Medicine/Medicine';
-import {AddRemindersView} from './src/view/Patient/Reminders/AddReminders';
+import {RemindersActionView} from './src/view/Patient/Reminders/RemindersAction';
 
 const routes = createSwitchNavigator({
   Main: createStackNavigator(
@@ -33,13 +33,13 @@ const routes = createSwitchNavigator({
   ),
   Patient: createBottomTabNavigator(
     {
-      RemindersTab: createStackNavigator(
+      Reminders: createStackNavigator(
         {
           Reminders: {
             screen: RemindersView,
           },
-          AddReminders: {
-            screen: AddRemindersView,
+          RemindersAction: {
+            screen: RemindersActionView,
           },
         },
         {
@@ -81,6 +81,9 @@ const routes = createSwitchNavigator({
     },
     {
       tabBarComponent: FooterTabComponent,
+      tabBarOptions: {
+        keyboardHidesTabBar: true,
+      },
     },
   ),
 });

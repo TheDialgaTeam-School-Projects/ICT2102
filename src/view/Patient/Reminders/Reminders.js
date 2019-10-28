@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
-import {Col, Grid} from 'react-native-easy-grid';
-import {Container, Content, View} from 'native-base';
+import {Col, Grid, Row} from 'react-native-easy-grid';
+import {Button, Container, Content, Icon, Text, View} from 'native-base';
 import {CustomHeaderComponent} from '../../Component/CustomHeader';
 import {ReminderComponent} from './ReminderComponent';
 import {RemindersController} from '../../../controller/Patient/Reminders/Reminders';
@@ -10,36 +10,65 @@ export class RemindersView extends Component {
   constructor(props) {
     super(props);
     this.controller = new RemindersController(this);
+    this.willFocusEvent = this.props.navigation.addListener(
+      'willFocus',
+      this.controller.willFocus,
+    );
+  }
+
+  componentDidMount() {
+    this.controller.componentDidMount();
+  }
+
+  componentWillUnmount() {
+    this.willFocusEvent.remove();
   }
 
   render() {
-    let test = [];
-
-    for (let i = 0; i < 10; i++) {
-      test.push(i);
-    }
+    const reminders = this.state.patient
+      ? this.state.patient.patientReminders
+      : [];
 
     return (
       <Container>
         <CustomHeaderComponent headerTitle="REMINDERS" {...this.props} />
-        <Content>
-          <View padder />
-          <Grid style={GlobalCSS.alignItemsCenter}>
-            <Col size={1} />
-            <Col size={4} style={GlobalCSS.alignItemsCenter}>
-              {test.map((value, index) => {
-                return (
-                  <ReminderComponent
-                    key={index}
-                    text={'Reminder #' + value + ': Test @ 5 PM'}
-                  />
-                );
-              })}
+        <View padder />
+        <Grid>
+          <Row size={1}>
+            <Col size={4} />
+            <Col size={1} style={GlobalCSS.mr1}>
+              <Button
+                rounded
+                iconLeft
+                style={GlobalCSS.button}
+                onPress={this.controller.onPressAddReminder}>
+                <Icon type="FontAwesome5" name="bell" />
+                <Text style={GlobalCSS.buttonIconLabel}>Add reminder</Text>
+              </Button>
             </Col>
-            <Col size={1} />
-          </Grid>
-          <View padder />
-        </Content>
+          </Row>
+          <Row size={10}>
+            <Content>
+              <Grid style={GlobalCSS.alignItemsCenter}>
+                <Col size={1} />
+                <Col size={4} style={GlobalCSS.alignItemsCenter}>
+                  {reminders.map((value, index) => {
+                    return (
+                      <ReminderComponent
+                        key={index}
+                        index={index}
+                        value={value}
+                        {...this.props}
+                      />
+                    );
+                  })}
+                </Col>
+                <Col size={1} />
+              </Grid>
+              <View padder />
+            </Content>
+          </Row>
+        </Grid>
       </Container>
     );
   }

@@ -8,9 +8,9 @@ export class PatientInformationView extends Component {
   constructor(props) {
     super(props);
     this.controller = new PatientInformationController(this);
-    this.didFocusEvent = this.props.navigation.addListener(
-      'didFocus',
-      this.controller.didFocus,
+    this.willFocusEvent = this.props.navigation.addListener(
+      'willFocus',
+      this.controller.willFocus,
     );
   }
 
@@ -19,7 +19,7 @@ export class PatientInformationView extends Component {
   }
 
   componentWillUnmount() {
-    this.didFocusEvent.remove();
+    this.willFocusEvent.remove();
   }
 
   render() {

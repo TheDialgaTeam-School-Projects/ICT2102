@@ -7,7 +7,7 @@ export class CustomHeaderController extends Controller {
   constructor(view) {
     super(view);
     this.componentDidMount = this.componentDidMount.bind(this);
-    this.didFocus = this.didFocus.bind(this);
+    this.willFocus = this.willFocus.bind(this);
     this.onPressLogoutButton = this.onPressLogoutButton.bind(this);
   }
 
@@ -20,8 +20,9 @@ export class CustomHeaderController extends Controller {
 
   /**
    * This event triggers when the screen is in focus.
+   * @returns {Promise<void>}
    */
-  async didFocus() {
+  async willFocus() {
     const staffJson = await AsyncStorage.getItem('staffInformation');
     const patientJson = await AsyncStorage.getItem('patientInformation');
 
@@ -38,6 +39,7 @@ export class CustomHeaderController extends Controller {
 
   /**
    * This event triggers when the logout button is pressed.
+   * @returns {Promise<void>}
    */
   async onPressLogoutButton() {
     await AsyncStorage.removeItem('staffInformation');

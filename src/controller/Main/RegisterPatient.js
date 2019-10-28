@@ -7,7 +7,7 @@ export class RegisterPatientController extends Controller {
   constructor(view) {
     super(view);
     this.componentDidMount = this.componentDidMount.bind(this);
-    this.didFocus = this.didFocus.bind(this);
+    this.willFocus = this.willFocus.bind(this);
     this.onChangeTextPatientIdInput = this.onChangeTextPatientIdInput.bind(
       this,
     );
@@ -28,7 +28,7 @@ export class RegisterPatientController extends Controller {
   /**
    * This event triggers when the screen is in focus.
    */
-  didFocus() {
+  willFocus() {
     this.state = {isLoading: false};
   }
 
@@ -49,6 +49,7 @@ export class RegisterPatientController extends Controller {
 
   /**
    * This event triggers when the submit button is pressed.
+   * @returns {Promise<void>}
    */
   async onPressSubmitButton() {
     try {

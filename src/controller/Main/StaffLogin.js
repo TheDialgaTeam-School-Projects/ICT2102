@@ -2,13 +2,12 @@ import {Alert} from 'react-native';
 import AsyncStorage from '@react-native-community/async-storage';
 import {Controller} from '../Controller';
 import {StaffManagement} from '../../service/StaffManagement';
-import {Config} from '../../Config';
 
 export class LoginScreenController extends Controller {
   constructor(view) {
     super(view);
     this.componentDidMount = this.componentDidMount.bind(this);
-    this.didFocus = this.didFocus.bind(this);
+    this.willFocus = this.willFocus.bind(this);
     this.onChangeTextStaffIdInput = this.onChangeTextStaffIdInput.bind(this);
     this.onChangeTextPasswordInput = this.onChangeTextPasswordInput.bind(this);
     this.onPressBackButton = this.onPressBackButton.bind(this);
@@ -29,7 +28,7 @@ export class LoginScreenController extends Controller {
   /**
    * This event triggers when the screen is in focus.
    */
-  didFocus() {
+  willFocus() {
     this.state = {isLoading: false};
   }
 

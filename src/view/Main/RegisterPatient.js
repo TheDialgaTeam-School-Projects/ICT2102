@@ -9,21 +9,20 @@ import {
   Item,
   Label,
   Text,
-  Title,
   View,
 } from 'native-base';
 import {LoadingModalComponent} from '../Component/LoadingModal';
 import {RegisterPatientController} from '../../controller/Main/RegisterPatient';
 import {GlobalCSS} from '../../css/Global';
-import {CustomHeaderComponent} from "../Component/CustomHeader";
+import {CustomHeaderComponent} from '../Component/CustomHeader';
 
 export class RegisterPatientView extends Component {
   constructor(props) {
     super(props);
     this.controller = new RegisterPatientController(this);
-    this.didFocusEvent = this.props.navigation.addListener(
-      'didFocus',
-      this.controller.didFocus,
+    this.willFocusEvent = this.props.navigation.addListener(
+      'willFocus',
+      this.controller.willFocus,
     );
   }
 
@@ -32,7 +31,7 @@ export class RegisterPatientView extends Component {
   }
 
   componentWillUnmount() {
-    this.didFocusEvent.remove();
+    this.willFocusEvent.remove();
   }
 
   render() {
@@ -48,11 +47,11 @@ export class RegisterPatientView extends Component {
         <CustomHeaderComponent headerTitle="REGISTER PATIENT" {...this.props} />
         <View style={css.centerContainer}>
           <Form>
-            <Item fixedLabel>
+            <Item inlineLabel>
               <Label style={GlobalCSS.formLabel}>Enter/Scan Patient ID:</Label>
               <Input
                 style={GlobalCSS.formInput}
-                placeholder="Patient ID..."
+                placeholder="Enter Patient ID..."
                 autoCorrect={false}
                 onChangeText={this.controller.onChangeTextPatientIdInput}
                 autoFocus={true}

@@ -1,14 +1,13 @@
 import AsyncStorage from '@react-native-community/async-storage';
-import firestore from '@react-native-firebase/firestore';
 import {Controller} from '../Controller';
 import {PatientModel} from '../../model/Patient';
-import {Config} from '../../Config';
+import {PatientManagement} from '../../service/PatientManagement';
 
 export class PatientInformationController extends Controller {
   constructor(view) {
     super(view);
     this.componentDidMount = this.componentDidMount.bind(this);
-    this.didFocus = this.didFocus.bind(this);
+    this.willFocus = this.willFocus.bind(this);
     this.onPressLoginButton = this.onPressLoginButton.bind(this);
   }
 
@@ -21,31 +20,27 @@ export class PatientInformationController extends Controller {
 
   /**
    * This event triggers when the screen is in focus.
+   * @returns {Promise<void>}
    */
-  async didFocus() {
+  async willFocus() {
     const patientJson = await AsyncStorage.getItem('patientInformation');
 
     if (patientJson != null) {
-      const patientModel = PatientModel.createModel(JSON.parse(patientJson));
-
-      if (Config.useInternalCache) {
-        this.state = {patient: patientModel};
-        return;
-      }
-
-      const patientQuery = await firestore()
-        .collection('patients')
-        .where('patientId', '==', patientModel.patientId)
-        .get();
-
-      if (patientQuery.size === 0) {
-        this.state = {patient: null};
-      } else {
-        const newPatientModel = PatientModel.createModel(
-          patientQuery.docs[0].data(),
+      try {
+        const patientModel = PatientModel.createModel(JSON.parse(patientJson));
+        const patientInformation = await PatientManagement.getPatientById(
+          patientModel.patientId,
         );
 
-        this.state = {patient: newPatientModel};
+        await AsyncStorage.setItem(
+          'patientInformation',
+          patientInformation.toJson(),
+        );
+
+        this.state = {patient: patientInformation};
+      } catch (e) {
+        await AsyncStorage.removeItem('patientInformation');
+        this.state = {patient: null};
       }
     }
   }

@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
-import {ActivityIndicator, Modal, View} from 'react-native';
+import {Modal} from 'react-native';
+import {Spinner, View} from 'native-base';
 import {GlobalCSS} from '../../css/Global';
 
 export class LoadingModalComponent extends Component {
@@ -14,7 +15,7 @@ export class LoadingModalComponent extends Component {
         transparent={true}
         visible={this.props.visible}>
         <View style={GlobalCSS.loadingContainer}>
-          <ActivityIndicator size="large" color="#0000FF" />
+          <Spinner color="blue" />
         </View>
       </Modal>
     );

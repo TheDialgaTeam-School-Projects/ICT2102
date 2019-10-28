@@ -6,6 +6,7 @@ export class PatientModel extends Model {
     this.patientId = jsonObj?.patientId ?? '';
     this.patientName = jsonObj?.patientName ?? '';
     this.patientConditions = jsonObj?.patientConditions ?? [];
+    this.patientReminders = jsonObj?.patientReminders ?? [];
   }
 
   /**

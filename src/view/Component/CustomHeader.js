@@ -8,9 +8,9 @@ export class CustomHeaderComponent extends Component {
   constructor(props) {
     super(props);
     this.controller = new CustomHeaderController(this);
-    this.didFocusEvent = this.props.navigation.addListener(
-      'didFocus',
-      this.controller.didFocus,
+    this.willFocusEvent = this.props.navigation.addListener(
+      'willFocus',
+      this.controller.willFocus,
     );
   }
 
@@ -19,7 +19,7 @@ export class CustomHeaderComponent extends Component {
   }
 
   componentWillUnmount() {
-    this.didFocusEvent.remove();
+    this.willFocusEvent.remove();
   }
 
   render() {
@@ -62,11 +62,11 @@ export class CustomHeaderComponent extends Component {
     return (
       <View style={GlobalCSS.header}>
         <Grid style={{...GlobalCSS.alignItemsCenter, ...GlobalCSS.header}}>
-          <Col>{leftHeader}</Col>
-          <Col style={GlobalCSS.alignItemsCenter}>
+          <Col size={1}>{leftHeader}</Col>
+          <Col size={2} style={GlobalCSS.alignItemsCenter}>
             <Text style={GlobalCSS.headerTitle}>{this.props.headerTitle}</Text>
           </Col>
-          <Col>{rightHeader}</Col>
+          <Col size={1}>{rightHeader}</Col>
         </Grid>
       </View>
     );
