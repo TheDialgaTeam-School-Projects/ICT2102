@@ -1,15 +1,9 @@
 import React, {Component} from 'react';
-import {ActivityIndicator, Modal, View} from 'react-native';
-import GlobalCSS from '../../css/Global';
+import {Modal} from 'react-native';
+import {Spinner, View} from 'native-base';
+import {GlobalCSS} from '../../css/Global';
 
-export type Props = $ReadOnly<{|
-  /**
-   * The `visible` prop determines whether loading modal is visible.
-   */
-  visible: boolean,
-|}>;
-
-export default class LoadingModal extends Component<Props> {
+export class LoadingModalComponent extends Component {
   constructor(props) {
     super(props);
   }
@@ -21,7 +15,7 @@ export default class LoadingModal extends Component<Props> {
         transparent={true}
         visible={this.props.visible}>
         <View style={GlobalCSS.loadingContainer}>
-          <ActivityIndicator size="large" color="#0000FF" />
+          <Spinner color="blue" />
         </View>
       </Modal>
     );
