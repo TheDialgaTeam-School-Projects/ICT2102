@@ -8,6 +8,18 @@ export class PatientInformationView extends Component {
   constructor(props) {
     super(props);
     this.controller = new PatientInformationController(this);
+    this.willFocusEvent = this.props.navigation.addListener(
+      'willFocus',
+      this.controller.willFocus,
+    );
+  }
+
+  componentDidMount() {
+    this.controller.componentDidMount();
+  }
+
+  componentWillUnmount() {
+    this.willFocusEvent.remove();
   }
 
   render() {
@@ -17,15 +29,21 @@ export class PatientInformationView extends Component {
         justifyContent: 'center',
         alignItems: 'center',
       },
-      patientLabel: {
-        fontSize: 48,
-      },
     });
+
+    const patientConditions = this.state.patient ? (
+      <Text style={GlobalCSS.patientConditionsText}>
+        {this.state.patient.patientConditions.join('\n')}
+      </Text>
+    ) : null;
 
     return (
       <Container>
         <View style={css.patientInformationView}>
-          <Text style={css.patientLabel}>No Patient</Text>
+          <Text style={GlobalCSS.patientNameText}>
+            {this.state.patient ? this.state.patient.patientName : 'No Patient'}
+          </Text>
+          {patientConditions}
           <View padder />
           <Button
             style={GlobalCSS.button}

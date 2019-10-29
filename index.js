@@ -8,7 +8,9 @@ import {FooterTabComponent} from './src/view/Component/FooterTabs';
 import {PatientInformationView} from './src/view/Main/PatientInformation';
 import {StaffLoginView} from './src/view/Main/StaffLogin';
 import {RegisterPatientView} from './src/view/Main/RegisterPatient';
-import {RemindersView} from './src/view/Patient/Reminders';
+import {RemindersView} from './src/view/Patient/Reminders/Reminders';
+import {MedicineView} from './src/view/Patient/Medicine/Medicine';
+import {RemindersActionView} from './src/view/Patient/Reminders/RemindersAction';
 
 const routes = createSwitchNavigator({
   Main: createStackNavigator(
@@ -21,9 +23,6 @@ const routes = createSwitchNavigator({
       },
       RegisterPatient: {
         screen: RegisterPatientView,
-        navigationOptions: () => ({
-          header: <HeaderComponent hasHeader={false} />,
-        }),
       },
     },
     {
@@ -34,27 +33,57 @@ const routes = createSwitchNavigator({
   ),
   Patient: createBottomTabNavigator(
     {
-      Reminders: {
-        screen: RemindersView,
-      },
+      Reminders: createStackNavigator(
+        {
+          Reminders: {
+            screen: RemindersView,
+          },
+          RemindersAction: {
+            screen: RemindersActionView,
+          },
+        },
+        {
+          defaultNavigationOptions: () => ({
+            header: <HeaderComponent />,
+          }),
+        },
+      ),
       Medicine: {
-        screen: RemindersView,
+        screen: MedicineView,
+        navigationOptions: () => ({
+          title: 'Medicine',
+        }),
       },
       CaseNotes: {
         screen: RemindersView,
+        navigationOptions: () => ({
+          title: 'Case Notes',
+        }),
       },
       Food: {
         screen: RemindersView,
+        navigationOptions: () => ({
+          title: 'Food',
+        }),
       },
       Vitals: {
         screen: RemindersView,
+        navigationOptions: () => ({
+          title: 'Vitals',
+        }),
       },
       Faq: {
         screen: RemindersView,
+        navigationOptions: () => ({
+          title: 'Faq',
+        }),
       },
     },
     {
       tabBarComponent: FooterTabComponent,
+      tabBarOptions: {
+        keyboardHidesTabBar: true,
+      },
     },
   ),
 });
@@ -66,5 +95,7 @@ class App extends Component {
     return <AppContainer />;
   }
 }
+
+//Testing123
 
 AppRegistry.registerComponent('Dashboard', () => App);

@@ -1,14 +1,14 @@
 import AsyncStorage from '@react-native-community/async-storage';
-import {Controller} from '../Controller';
-import {PatientModel} from '../../model/Patient';
-import {PatientManagement} from '../../service/PatientManagement';
+import {Controller} from '../../Controller';
+import {PatientModel} from '../../../model/Patient';
+import {PatientManagement} from '../../../service/PatientManagement';
 
-export class PatientInformationController extends Controller {
+export class RemindersController extends Controller {
   constructor(view) {
     super(view);
     this.componentDidMount = this.componentDidMount.bind(this);
     this.willFocus = this.willFocus.bind(this);
-    this.onPressLoginButton = this.onPressLoginButton.bind(this);
+    this.onPressAddReminder = this.onPressAddReminder.bind(this);
   }
 
   /**
@@ -46,9 +46,9 @@ export class PatientInformationController extends Controller {
   }
 
   /**
-   * This event triggers when the login button is pressed.
+   * This event triggers when add reminder button is pressed.
    */
-  onPressLoginButton() {
-    this.navigate('StaffLogin');
+  onPressAddReminder() {
+    this.navigate('RemindersAction', {action: 'add'});
   }
 }

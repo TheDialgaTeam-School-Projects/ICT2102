@@ -1,11 +1,13 @@
 import {Alert} from 'react-native';
+import AsyncStorage from '@react-native-community/async-storage';
 import {Controller} from '../Controller';
+import {PatientManagement} from '../../service/PatientManagement';
 
 export class RegisterPatientController extends Controller {
   constructor(view) {
     super(view);
     this.componentDidMount = this.componentDidMount.bind(this);
-    this.didFocus = this.didFocus.bind(this);
+    this.willFocus = this.willFocus.bind(this);
     this.onChangeTextPatientIdInput = this.onChangeTextPatientIdInput.bind(
       this,
     );
@@ -26,7 +28,7 @@ export class RegisterPatientController extends Controller {
   /**
    * This event triggers when the screen is in focus.
    */
-  didFocus() {
+  willFocus() {
     this.state = {isLoading: false};
   }
 
@@ -47,24 +49,20 @@ export class RegisterPatientController extends Controller {
 
   /**
    * This event triggers when the submit button is pressed.
+   * @returns {Promise<void>}
    */
-  onPressSubmitButton() {
+  async onPressSubmitButton() {
     try {
       this.state = {isLoading: true};
 
-      // TODO: PLEASE REMOVE THIS COMMENT TO ENABLE THIS MODULE.
-      // This is intentionally disabled so that we aren't wasting daily API calls for testing.
-      /*
-      const staffInformation = await StaffManagement.login(
-        this.state.staffId,
-        this.state.password,
+      const patientInformation = await PatientManagement.getPatientById(
+        this.state.patientId,
       );
 
       await AsyncStorage.setItem(
-        'staffInformation',
-        JSON.stringify(staffInformation.toJsonObj()),
+        'patientInformation',
+        patientInformation.toJson(),
       );
-      */
 
       this.state = {isLoading: false};
       this.navigate('Patient');

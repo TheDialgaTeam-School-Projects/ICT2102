@@ -19,11 +19,18 @@ export class StaffLoginView extends Component {
   constructor(props) {
     super(props);
     this.controller = new LoginScreenController(this);
-    this.props.navigation.addListener('didFocus', this.controller.didFocus);
+    this.willFocusEvent = this.props.navigation.addListener(
+      'willFocus',
+      this.controller.willFocus,
+    );
   }
 
   componentDidMount() {
     this.controller.componentDidMount();
+  }
+
+  componentWillUnmount() {
+    this.willFocusEvent.remove();
   }
 
   render() {
@@ -37,10 +44,11 @@ export class StaffLoginView extends Component {
     return (
       <Container style={css.centerContainer}>
         <Form>
-          <Item fixedLabel>
-            <Label>Staff Id:</Label>
+          <Item inlineLabel>
+            <Label style={GlobalCSS.formLabel}>Staff Id:</Label>
             <Input
-              placeholder="Staff Id..."
+              style={GlobalCSS.formInput}
+              placeholder="Enter Staff Id..."
               autoCorrect={false}
               autoCompleteType="username"
               textContentType="username"
@@ -48,10 +56,11 @@ export class StaffLoginView extends Component {
               autoFocus={true}
             />
           </Item>
-          <Item fixedLabel>
-            <Label>Password:</Label>
+          <Item inlineLabel>
+            <Label style={GlobalCSS.formLabel}>Password:</Label>
             <Input
-              placeholder="Password..."
+              style={GlobalCSS.formInput}
+              placeholder="Enter Password..."
               autoCorrect={false}
               autoCompleteType="password"
               textContentType="password"
