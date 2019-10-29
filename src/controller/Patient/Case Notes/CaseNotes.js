@@ -1,21 +1,21 @@
 import AsyncStorage from '@react-native-community/async-storage';
-import {Controller} from '../../Controller';
-import {PatientModel} from '../../../model/Patient';
-import {PatientManagement} from '../../../service/PatientManagement';
+import { Controller } from '../../Controller';
+import { PatientModel } from '../../../model/Patient';
+import { PatientManagement } from '../../../service/PatientManagement';
 
 export class CaseNotesController extends Controller {
   constructor(view) {
     super(view);
     this.componentDidMount = this.componentDidMount.bind(this);
     this.willFocus = this.willFocus.bind(this);
-    this.onPressAddReminder = this.onPressAddReminder.bind(this);
+    {/*this.onPressAddReminder = this.onPressAddReminder.bind(this);*/}
   }
 
   /**
    * This event triggers when the component initialize.
    */
   componentDidMount() {
-    this.state = {patient: null};
+    this.state = { patient: null };
   }
 
   /**
@@ -37,10 +37,10 @@ export class CaseNotesController extends Controller {
           patientInformation.toJson(),
         );
 
-        this.state = {patient: patientInformation};
+        this.state = { patient: patientInformation };
       } catch (e) {
         await AsyncStorage.removeItem('patientInformation');
-        this.state = {patient: null};
+        this.state = { patient: null };
       }
     }
   }
@@ -49,6 +49,6 @@ export class CaseNotesController extends Controller {
    * This event triggers when add reminder button is pressed.
    */
   /*onPressAddReminder() {
-    this.navigate('RemindersAction', {action: 'add'});
+    this.navigate('RemindersAction', { action: 'add' });
   }*/
 }

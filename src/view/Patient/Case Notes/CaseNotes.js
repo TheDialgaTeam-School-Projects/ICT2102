@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Col, Grid, Row } from 'react-native-easy-grid';
-import { Button, Container, Content, Icon, Text, View } from 'native-base';
+import { Button, Container, Content, Icon, Text, View, List, ListItem,Left, Right,Header} from 'native-base';
 import { CustomHeaderComponent } from '../../Component/CustomHeader';
 import { CaseNotesComponent } from './CaseNotesComponent';
 import { CaseNotesController } from '../../../controller/Patient/Case Notes/CaseNotes';
@@ -31,42 +31,61 @@ export class CaseNotesView extends Component {
 
     return (
       <Container>
-        <CustomHeaderComponent headerTitle="REMINDERS" {...this.props} />
+        <CustomHeaderComponent headerTitle="CASE NOTES" {...this.props} />
         <View padder />
         <Grid>
-          <Row size={1}>
-            <Col size={4} />
-            <Col size={1} style={GlobalCSS.mr1}>
-              <Button
-                rounded
-                iconLeft
-                style={GlobalCSS.button}
-                onPress={this.controller.onPressAddReminder}>
-                <Icon type="FontAwesome5" name="bell" />
-                <Text style={GlobalCSS.buttonIconLabel}>Add reminder</Text>
-              </Button>
+          <Row size={11}>
+            <Col size={1}>
+              <Content>
+                <List>
+                  <Header>
+                    <Text>Click Here For More:</Text>
+                  </Header>
+                  <ListItem itemDivider>
+                  </ListItem>
+                  <ListItem>
+                    <Left>
+                      <Text>Subjective</Text>
+                    </Left>
+                    <Right>
+                      <Icon name="arrow-forward" />
+                    </Right>
+                  </ListItem>
+                  <ListItem itemDivider>
+                  </ListItem>
+                  <ListItem>
+                    <Left>
+                      <Text>Objective</Text>
+                    </Left>
+                    <Right>
+                      <Icon name="arrow-forward" />
+                    </Right>
+                  </ListItem>
+                  <ListItem itemDivider>
+                  </ListItem>
+                  <ListItem>
+                    <Left>
+                      <Text>Assessment</Text>
+                    </Left>
+                    <Right>
+                      <Icon name="arrow-forward" />
+                    </Right>
+                  </ListItem>
+                  <ListItem itemDivider>
+                  </ListItem>
+                  <ListItem>
+                    <Left>
+                      <Text>Plan</Text>
+                    </Left>
+                    <Right>
+                      <Icon name="arrow-forward" />
+                    </Right>
+                  </ListItem>
+                </List>
+              </Content>
             </Col>
-          </Row>
-          <Row size={10}>
-            <Content>
-              <Grid style={GlobalCSS.alignItemsCenter}>
-                <Col size={1} />
-                <Col size={4} style={GlobalCSS.alignItemsCenter}>
-                  {reminders.map((value, index) => {
-                    return (
-                      <CaseNotesComponent
-                        key={index}
-                        index={index}
-                        value={value}
-                        {...this.props}
-                      />
-                    );
-                  })}
-                </Col>
-                <Col size={1} />
-              </Grid>
-              <View padder />
-            </Content>
+            <Col size={4} style={GlobalCSS.mr1}>
+            </Col>
           </Row>
         </Grid>
       </Container>
