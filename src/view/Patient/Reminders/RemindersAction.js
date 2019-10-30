@@ -11,10 +11,10 @@ import {
   Text,
   View,
 } from 'native-base';
-import {CustomHeaderComponent} from '../../Component/CustomHeader';
+import {HeaderComponent} from '../../Component/Header';
 import {LoadingModalComponent} from '../../Component/LoadingModal';
 import {RemindersActionController} from '../../../controller/Patient/Reminders/RemindersAction';
-import {GlobalCSS} from '../../../css/Global';
+import {GlobalCss} from '../../../css/GlobalCss';
 
 export class RemindersActionView extends Component {
   constructor(props) {
@@ -45,29 +45,40 @@ export class RemindersActionView extends Component {
 
     return (
       <Container>
-        <CustomHeaderComponent
+        <HeaderComponent
           headerTitle={`${headerText} REMINDERS`}
           {...this.props}
         />
         <Form>
           <Item inlineLabel>
-            <Label style={GlobalCSS.formLabel}>Description:</Label>
+            <Label style={GlobalCss.formLabel}>Description:</Label>
             <Input
-              style={GlobalCSS.formInput}
+              style={GlobalCss.formInput}
               placeholder="Enter Description..."
-              onChangeText={() => {}}
+              onChangeText={this.controller.onChangeTextDescription}
               autoFocus={true}
+              value={
+                this.state.action === 'edit' ? this.state.data.message : ''
+              }
             />
           </Item>
           <Item inlineLabel>
-            <Label style={GlobalCSS.formLabel}>Date / Time:</Label>
+            <Label style={GlobalCss.formLabel}>Date / Time:</Label>
             <DatePicker
-              date={new Date()}
-              minimumDate={new Date()}
-              mode="date"
-              onDateChange={() => {}}
+              date={
+                this.state.action === 'edit'
+                  ? new Date(this.state.data.dateTime * 1000)
+                  : new Date()
+              }
+              minimumDate={
+                this.state.action === 'edit'
+                  ? new Date(this.state.data.dateTime * 1000)
+                  : new Date()
+              }
+              mode="datetime"
+              timeZoneOffsetInMinutes={8 * 60}
+              onDateChange={this.controller.onDateChange}
             />
-            <DatePicker date={new Date()} mode="time" onDateChange={() => {}} />
           </Item>
           <View padder />
           <Grid>
@@ -75,15 +86,17 @@ export class RemindersActionView extends Component {
               <Col size={1} />
               <Col size={1}>
                 <Button
-                  style={GlobalCSS.button}
+                  style={GlobalCss.button}
                   onPress={this.controller.onPressBackButton}>
-                  <Text style={GlobalCSS.buttonLabel}>Back</Text>
+                  <Text style={GlobalCss.buttonLabel}>Back</Text>
                 </Button>
               </Col>
               <Col size={1} />
               <Col size={1}>
-                <Button style={GlobalCSS.button} onPress={() => {}}>
-                  <Text style={GlobalCSS.buttonLabel}>Submit</Text>
+                <Button
+                  style={GlobalCss.button}
+                  onPress={this.controller.onPressSubmitButton}>
+                  <Text style={GlobalCss.buttonLabel}>Submit</Text>
                 </Button>
               </Col>
               <Col size={1} />

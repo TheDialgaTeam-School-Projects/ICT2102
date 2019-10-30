@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {Keyboard, Platform} from 'react-native';
 import {Button, Footer, FooterTab, Text} from 'native-base';
 import {FooterTabComponentController} from '../../controller/Component/FooterTabComponent';
-import {GlobalCSS} from '../../css/Global';
+import {GlobalCss} from '../../css/GlobalCss';
 
 export class FooterTabComponent extends Component {
   constructor(props) {
@@ -41,14 +41,14 @@ export class FooterTabComponent extends Component {
                 key={index}
                 style={
                   this.props.navigation.state.index === index
-                    ? GlobalCSS.footerTabSelected
-                    : GlobalCSS.footerTab
+                    ? GlobalCss.footerTabSelected
+                    : GlobalCss.footerTab
                 }
                 disabled={this.props.navigation.state.index === index}
                 onPress={() => {
                   this.props.navigation.navigate(route.routeName);
                 }}>
-                <Text style={GlobalCSS.footerTabLabel}>
+                <Text style={GlobalCss.footerTabLabel}>
                   {this.props
                     .getLabelText({route: route})
                     .split(/(?=[A-Z])/)

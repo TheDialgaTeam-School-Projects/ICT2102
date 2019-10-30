@@ -1,5 +1,6 @@
 export const Config = {
   useInternalCache: true,
+  clearInternalCache: true,
   staffInformation: {
     staffId: 'test',
     staffName: 'Yong Jian Ming',
@@ -12,11 +13,11 @@ export const Config = {
     patientReminders: [
       {
         dateTime: 1572273647,
-        message: "Doctor's Appointment",
+        description: "Doctor's Appointment",
       },
       {
         dateTime: 1572273647,
-        message: 'Operation',
+        description: 'Operation',
       },
     ],
   },

@@ -3,7 +3,7 @@ import {AppRegistry} from 'react-native';
 import {createAppContainer, createSwitchNavigator} from 'react-navigation';
 import {createStackNavigator} from 'react-navigation-stack';
 import {createBottomTabNavigator} from 'react-navigation-tabs';
-import {HeaderComponent} from './src/view/Component/Header';
+import {View} from 'native-base';
 import {FooterTabComponent} from './src/view/Component/FooterTabs';
 import {PatientInformationView} from './src/view/Main/PatientInformation';
 import {StaffLoginView} from './src/view/Main/StaffLogin';
@@ -27,7 +27,7 @@ const routes = createSwitchNavigator({
     },
     {
       defaultNavigationOptions: () => ({
-        header: <HeaderComponent />,
+        header: <View />,
       }),
     },
   ),
@@ -44,7 +44,7 @@ const routes = createSwitchNavigator({
         },
         {
           defaultNavigationOptions: () => ({
-            header: <HeaderComponent />,
+            header: <View />,
           }),
         },
       ),
@@ -81,9 +81,6 @@ const routes = createSwitchNavigator({
     },
     {
       tabBarComponent: FooterTabComponent,
-      tabBarOptions: {
-        keyboardHidesTabBar: true,
-      },
     },
   ),
 });

@@ -1,8 +1,7 @@
 import React, {Component} from 'react';
-import {StyleSheet} from 'react-native';
 import {Button, Container, Text, View} from 'native-base';
 import {PatientInformationController} from '../../controller/Main/PatientInformation';
-import {GlobalCSS} from '../../css/Global';
+import {GlobalCss} from '../../css/GlobalCss';
 
 export class PatientInformationView extends Component {
   constructor(props) {
@@ -14,8 +13,8 @@ export class PatientInformationView extends Component {
     );
   }
 
-  componentDidMount() {
-    this.controller.componentDidMount();
+  async componentDidMount() {
+    await this.controller.componentDidMount();
   }
 
   componentWillUnmount() {
@@ -23,34 +22,26 @@ export class PatientInformationView extends Component {
   }
 
   render() {
-    const css = StyleSheet.create({
-      patientInformationView: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-      },
-    });
-
-    const patientConditions = this.state.patient ? (
-      <Text style={GlobalCSS.patientConditionsText}>
-        {this.state.patient.patientConditions.join('\n')}
+    const patientConditions = this.state.patientModel ? (
+      <Text style={GlobalCss.patientConditionsText}>
+        {this.state.patientModel.getPatientConditions().join('\n')}
       </Text>
     ) : null;
 
     return (
-      <Container>
-        <View style={css.patientInformationView}>
-          <Text style={GlobalCSS.patientNameText}>
-            {this.state.patient ? this.state.patient.patientName : 'No Patient'}
-          </Text>
-          {patientConditions}
-          <View padder />
-          <Button
-            style={GlobalCSS.button}
-            onPress={this.controller.onPressLoginButton}>
-            <Text style={GlobalCSS.buttonLabel}>Login</Text>
-          </Button>
-        </View>
+      <Container style={GlobalCss.patientInformationContainer}>
+        <Text style={GlobalCss.patientNameText}>
+          {this.state.patientModel
+            ? this.state.patientModel.getPatientName()
+            : 'No Patient'}
+        </Text>
+        {patientConditions}
+        <View padder />
+        <Button
+          style={GlobalCss.button}
+          onPress={this.controller.onPressLoginButton}>
+          <Text style={GlobalCss.buttonLabel}>Login</Text>
+        </Button>
       </Container>
     );
   }

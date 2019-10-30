@@ -1,17 +1,18 @@
 import firestore from '@react-native-firebase/firestore';
 import {PatientModel} from '../model/Patient';
 import {Config} from '../Config';
+import {VariableAssertion} from '../VariableAssertion';
 
 export class PatientManagement {
   /**
    * Get patient by id.
    * @param patientId Patient id.
-   * @returns {Promise<PatientModel>}
+   * @returns {Promise<PatientModel>} Patient information.
    */
   static getPatientById(patientId) {
     return new Promise(async (resolve, reject) => {
       try {
-        if (patientId === '') {
+        if (!VariableAssertion.assertStringIsNotNullOrEmpty(patientId)) {
           reject({title: 'Error', message: 'Patient id is empty.'});
           return;
         }
@@ -21,7 +22,7 @@ export class PatientManagement {
             Config.patientInformation,
           );
 
-          if (patientModel.patientId !== patientId) {
+          if (patientModel.getPatientId() !== patientId) {
             reject({title: 'Error', message: 'Patient does not exist.'});
             return;
           }
@@ -38,7 +39,10 @@ export class PatientManagement {
             return;
           }
 
-          const patientModel = PatientModel.createModel(query.docs[0].data());
+          const patientModel = PatientModel.createModel({
+            docId: query.docs[0].id,
+            ...query.docs[0].data(),
+          });
 
           resolve(patientModel);
         }

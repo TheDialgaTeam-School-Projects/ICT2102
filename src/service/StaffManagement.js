@@ -1,10 +1,11 @@
 import firestore from '@react-native-firebase/firestore';
 import {StaffModel} from '../model/Staff';
 import {Config} from '../Config';
+import {VariableAssertion} from '../VariableAssertion';
 
 export class StaffManagement {
   /**
-   * Authenticate the staff with staff id and password.
+   * Authenticate the staffModel with staffModel id and password.
    * @param staffId Staff id for authentication.
    * @param password Password for authentication.
    * @returns {Promise<StaffModel>} Staff information.
@@ -12,12 +13,12 @@ export class StaffManagement {
   static login(staffId, password) {
     return new Promise(async (resolve, reject) => {
       try {
-        if (staffId === '') {
+        if (!VariableAssertion.assertStringIsNotNullOrEmpty(staffId)) {
           reject({title: 'Error', message: 'Staff id is empty.'});
           return;
         }
 
-        if (password === '') {
+        if (!VariableAssertion.assertStringIsNotNullOrEmpty(password)) {
           reject({title: 'Error', message: 'Password is empty.'});
           return;
         }
@@ -25,12 +26,12 @@ export class StaffManagement {
         if (Config.useInternalCache) {
           const staffModel = StaffModel.createModel(Config.staffInformation);
 
-          if (staffModel.staffId !== staffId) {
+          if (staffModel.getStaffId() !== staffId) {
             reject({title: 'Error', message: 'Staff does not exist.'});
             return;
           }
 
-          if (staffModel.staffPassword !== password) {
+          if (staffModel.getStaffPassword() !== password) {
             reject({title: 'Error', message: 'Password is incorrect.'});
             return;
           }
@@ -47,7 +48,10 @@ export class StaffManagement {
             return;
           }
 
-          const staffModel = StaffModel.createModel(query.docs[0].data());
+          const staffModel = StaffModel.createModel({
+            docId: query.docs[0].id,
+            ...query.docs[0].data(),
+          });
 
           if (staffModel.staffPassword !== password) {
             reject({title: 'Error', message: 'Password is incorrect.'});

@@ -33,7 +33,7 @@ export class RegisterPatientController extends Controller {
   }
 
   /**
-   * This event update the patient id state during onChangeText event.
+   * This event update the patientModel id state during onChangeText event.
    * @param value TextInput value.
    */
   onChangeTextPatientIdInput(value) {
@@ -55,13 +55,13 @@ export class RegisterPatientController extends Controller {
     try {
       this.state = {isLoading: true};
 
-      const patientInformation = await PatientManagement.getPatientById(
+      const patientModel = await PatientManagement.getPatientById(
         this.state.patientId,
       );
 
       await AsyncStorage.setItem(
         'patientInformation',
-        patientInformation.toJson(),
+        patientModel.toJson(true),
       );
 
       this.state = {isLoading: false};

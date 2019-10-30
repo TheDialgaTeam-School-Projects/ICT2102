@@ -2,6 +2,7 @@ import {Alert} from 'react-native';
 import AsyncStorage from '@react-native-community/async-storage';
 import {Controller} from '../Controller';
 import {StaffManagement} from '../../service/StaffManagement';
+import {DeviceCacheManagement} from '../../service/DeviceCacheManagement';
 
 export class LoginScreenController extends Controller {
   constructor(view) {
@@ -28,12 +29,13 @@ export class LoginScreenController extends Controller {
   /**
    * This event triggers when the screen is in focus.
    */
-  willFocus() {
+  async willFocus() {
     this.state = {isLoading: false};
+    await AsyncStorage.removeItem('staffInformation');
   }
 
   /**
-   * This event update the staff id state during onChangeText event.
+   * This event update the staffModel id state during onChangeText event.
    * @param value TextInput value.
    */
   onChangeTextStaffIdInput(value) {
@@ -63,20 +65,16 @@ export class LoginScreenController extends Controller {
     try {
       this.state = {isLoading: true};
 
-      const staffInformation = await StaffManagement.login(
+      const staffModel = await StaffManagement.login(
         this.state.staffId,
         this.state.password,
       );
 
-      await AsyncStorage.setItem('staffInformation', staffInformation.toJson());
-
-      const patientInformation = await AsyncStorage.getItem(
-        'patientInformation',
-      );
+      await AsyncStorage.setItem('staffInformation', staffModel.toJson(true));
 
       this.state = {isLoading: false};
 
-      if (patientInformation) {
+      if (await DeviceCacheManagement.getPatientModelFromCache()) {
         this.navigate('Patient');
       } else {
         this.navigate('RegisterPatient');

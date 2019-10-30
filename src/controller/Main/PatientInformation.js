@@ -1,7 +1,7 @@
 import AsyncStorage from '@react-native-community/async-storage';
 import {Controller} from '../Controller';
-import {PatientModel} from '../../model/Patient';
-import {PatientManagement} from '../../service/PatientManagement';
+import {DeviceCacheManagement} from '../../service/DeviceCacheManagement';
+import {Config} from '../../Config';
 
 export class PatientInformationController extends Controller {
   constructor(view) {
@@ -13,9 +13,14 @@ export class PatientInformationController extends Controller {
 
   /**
    * This event triggers when the component initialize.
+   * @returns {Promise<void>}
    */
-  componentDidMount() {
-    this.state = {patient: null};
+  async componentDidMount() {
+    this.state = {patientModel: null};
+
+    if (Config.clearInternalCache) {
+      await DeviceCacheManagement.clearDeviceCache();
+    }
   }
 
   /**
@@ -23,25 +28,15 @@ export class PatientInformationController extends Controller {
    * @returns {Promise<void>}
    */
   async willFocus() {
-    const patientJson = await AsyncStorage.getItem('patientInformation');
-
-    if (patientJson != null) {
-      try {
-        const patientModel = PatientModel.createModel(JSON.parse(patientJson));
-        const patientInformation = await PatientManagement.getPatientById(
-          patientModel.patientId,
-        );
-
-        await AsyncStorage.setItem(
-          'patientInformation',
-          patientInformation.toJson(),
-        );
-
-        this.state = {patient: patientInformation};
-      } catch (e) {
-        await AsyncStorage.removeItem('patientInformation');
-        this.state = {patient: null};
-      }
+    try {
+      this.state = {
+        patientModel: await DeviceCacheManagement.getPatientModelFromCache(
+          true,
+        ),
+      };
+    } catch (e) {
+      await AsyncStorage.removeItem('patientInformation');
+      this.state = {patientModel: null};
     }
   }
 

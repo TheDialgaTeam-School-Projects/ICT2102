@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {Modal} from 'react-native';
 import {Spinner, View} from 'native-base';
-import {GlobalCSS} from '../../css/Global';
+import {GlobalCss} from '../../css/GlobalCss';
 
 export class LoadingModalComponent extends Component {
   constructor(props) {
@@ -14,7 +14,7 @@ export class LoadingModalComponent extends Component {
         animationType="fade"
         transparent={true}
         visible={this.props.visible}>
-        <View style={GlobalCSS.loadingContainer}>
+        <View style={GlobalCss.loadingModalContainer}>
           <Spinner color="blue" />
         </View>
       </Modal>
