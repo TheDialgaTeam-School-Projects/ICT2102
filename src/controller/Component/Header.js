@@ -3,7 +3,7 @@ import {Controller} from '../Controller';
 import {StaffModel} from '../../model/Staff';
 import {PatientModel} from '../../model/Patient';
 
-export class CustomHeaderController extends Controller {
+export class HeaderController extends Controller {
   constructor(view) {
     super(view);
     this.componentDidMount = this.componentDidMount.bind(this);
@@ -15,7 +15,7 @@ export class CustomHeaderController extends Controller {
    * This event triggers when the component initialize.
    */
   componentDidMount() {
-    this.state = {staff: null, patient: null};
+    this.state = {staffModel: null, patientModel: null};
   }
 
   /**
@@ -26,14 +26,14 @@ export class CustomHeaderController extends Controller {
     const staffJson = await AsyncStorage.getItem('staffInformation');
     const patientJson = await AsyncStorage.getItem('patientInformation');
 
-    if (staffJson != null) {
+    if (staffJson) {
       const staffModel = StaffModel.createModel(JSON.parse(staffJson));
-      this.state = {staff: staffModel};
+      this.state = {staffModel: staffModel};
     }
 
-    if (patientJson != null) {
+    if (patientJson) {
       const patientModel = PatientModel.createModel(JSON.parse(patientJson));
-      this.state = {patient: patientModel};
+      this.state = {patientModel: patientModel};
     }
   }
 
@@ -43,6 +43,6 @@ export class CustomHeaderController extends Controller {
    */
   async onPressLogoutButton() {
     await AsyncStorage.removeItem('staffInformation');
-    this.navigate('Main');
+    this.navigate('PatientInformation');
   }
 }

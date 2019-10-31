@@ -13,8 +13,8 @@ import {
   Title,
   View,
 } from 'native-base';
-import {GlobalCSS} from '../../../css/Global';
-import {CustomHeaderComponent} from '../../Component/CustomHeader';
+import {GlobalCss} from '../../../css/GlobalCss';
+import {HeaderComponent} from '../../Component/Header';
 import {MedicineController} from '../../../controller/Patient/Medicine/Medicine';
 
 export class MedicineView extends Component {
@@ -26,7 +26,7 @@ export class MedicineView extends Component {
   render() {
     return (
       <Container>
-        <CustomHeaderComponent headerTitle="MEDICINE" {...this.props} />
+        <HeaderComponent headerTitle="MEDICINE" {...this.props} />
       </Container>
     );
   }

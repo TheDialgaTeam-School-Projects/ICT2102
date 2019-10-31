@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import {StyleSheet} from 'react-native';
 import {Col, Grid, Row} from 'react-native-easy-grid';
 import {
   Button,
@@ -13,8 +12,8 @@ import {
 } from 'native-base';
 import {LoadingModalComponent} from '../Component/LoadingModal';
 import {RegisterPatientController} from '../../controller/Main/RegisterPatient';
-import {GlobalCSS} from '../../css/Global';
-import {CustomHeaderComponent} from '../Component/CustomHeader';
+import {GlobalCss} from '../../css/GlobalCss';
+import {HeaderComponent} from '../Component/Header';
 
 export class RegisterPatientView extends Component {
   constructor(props) {
@@ -35,22 +34,15 @@ export class RegisterPatientView extends Component {
   }
 
   render() {
-    const css = StyleSheet.create({
-      centerContainer: {
-        flex: 1,
-        justifyContent: 'center',
-      },
-    });
-
     return (
       <Container>
-        <CustomHeaderComponent headerTitle="REGISTER PATIENT" {...this.props} />
-        <View style={css.centerContainer}>
+        <HeaderComponent headerTitle="Register Patient" {...this.props} />
+        <View style={GlobalCss.registerPatientContainer}>
           <Form>
             <Item inlineLabel>
-              <Label style={GlobalCSS.formLabel}>Enter/Scan Patient ID:</Label>
+              <Label style={GlobalCss.formLabel}>Enter/Scan Patient ID:</Label>
               <Input
-                style={GlobalCSS.formInput}
+                style={GlobalCss.formInput}
                 placeholder="Enter Patient ID..."
                 autoCorrect={false}
                 onChangeText={this.controller.onChangeTextPatientIdInput}
@@ -63,17 +55,17 @@ export class RegisterPatientView extends Component {
                 <Col size={1} />
                 <Col size={1}>
                   <Button
-                    style={GlobalCSS.button}
+                    style={GlobalCss.button}
                     onPress={this.controller.onPressBackButton}>
-                    <Text style={GlobalCSS.buttonLabel}>Back</Text>
+                    <Text style={GlobalCss.buttonLabel}>Back</Text>
                   </Button>
                 </Col>
                 <Col size={1} />
                 <Col size={1}>
                   <Button
-                    style={GlobalCSS.button}
+                    style={GlobalCss.button}
                     onPress={this.controller.onPressSubmitButton}>
-                    <Text style={GlobalCSS.buttonLabel}>Submit</Text>
+                    <Text style={GlobalCss.buttonLabel}>Submit</Text>
                   </Button>
                 </Col>
                 <Col size={1} />
