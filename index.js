@@ -93,4 +93,6 @@ class App extends Component {
   }
 }
 
+//Testing123
+
 AppRegistry.registerComponent('Dashboard', () => App);
