@@ -16,8 +16,8 @@ import {
   Right,
   Left,
 } from 'native-base';
-import {GlobalCSS} from '../../../css/Global';
-import {CustomHeaderComponent} from '../../Component/CustomHeader';
+import {GlobalCss} from '../../../css/GlobalCss';
+import {HeaderComponent} from '../../Component/Header';
 import {FoodController} from '../../../controller/Patient/Food/Food';
 
 export class FoodView extends Component {
@@ -48,10 +48,10 @@ export class FoodView extends Component {
   render() {
     return (
 			<Container>
-				<CustomHeaderComponent headerTitle="SELECT FOOD" {...this.props} />
+				<HeaderComponent headerTitle="SELECT FOOD" {...this.props} />
 				<Grid>
 					<Row>
-						<Col style={{ height: '100%'}, GlobalCSS.alignItemsLeft}>
+						<Col style={{ height: '100%'}, GlobalCss.alignItemsLeft}>
 							<Text style={{textDecorationLine: "underline", fontSize: 40}}>Breakfast</Text>
 							<RadioGroup 
 								radioButtons={this.state.bFastData} 
@@ -60,7 +60,7 @@ export class FoodView extends Component {
 								labelStyle={{ fontSize: 14, }}
 							/>
 						</Col>
-						<Col style={{ height: '100%'}, GlobalCSS.alignItemsLeft}>
+						<Col style={{ height: '100%'}, GlobalCss.alignItemsLeft}>
 							<Text style={{textDecorationLine: "underline", fontSize: 40}}>Lunch</Text>
 							<ListItem>
 								<Left>
@@ -77,7 +77,7 @@ export class FoodView extends Component {
 						</Col>
 					</Row>
 					<Row>
-						<Col style={{ height: '100%'}, GlobalCSS.alignItemsLeft}>
+						<Col style={{ height: '100%'}, GlobalCss.alignItemsLeft}>
 							<Text style={{textDecorationLine: "underline", fontSize: 40}}>Dinner</Text>
 							<ListItem>
 									<Left>
@@ -94,9 +94,9 @@ export class FoodView extends Component {
 							<Button
 									regular
 									iconLeft
-									style={GlobalCSS.button, { position: 'absolute', bottom: '10%', right: '3%'}}
+									style={GlobalCss.button, { position: 'absolute', bottom: '10%', right: '3%'}}
 									onPress={this.controller.onPressAddReminder}>
-									<Text style={GlobalCSS.buttonIconLabel}>Update</Text>
+									<Text style={GlobalCss.buttonIconLabel}>Update</Text>
 							</Button>
 						</Col>
 					</Row>

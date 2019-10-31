@@ -13,8 +13,8 @@ import {
   Title,
   View,
 } from 'native-base';
-import {GlobalCSS} from '../../../css/Global';
-import {CustomHeaderComponent} from '../../Component/CustomHeader';
+import {GlobalCss} from '../../../css/GlobalCss';
+import {HeaderComponent} from '../../Component/Header';
 import {VitalsController} from '../../../controller/Patient/Vitals/Vitals';
 
 export class VitalsView extends Component {
@@ -32,9 +32,9 @@ export class VitalsView extends Component {
   render() {
     return (
       <Container>
-        <CustomHeaderComponent headerTitle="VITALS" {...this.props} />
+        <HeaderComponent headerTitle="Vitals" {...this.props} />
         <Grid>
-          <Col style={{ height: '100%'}, GlobalCSS.alignItemsCenter}>
+          <Col style={{ height: '100%'}, GlobalCss.alignItemsCenter}>
             <Text>Last Reading Taken</Text>
             <Text>Temperature: </Text>
             <Text>36&deg;C</Text>
@@ -46,12 +46,12 @@ export class VitalsView extends Component {
             <Button
               regular
               iconLeft
-              style={GlobalCSS.button}
+              style={GlobalCss.button}
               onPress={this.controller.onPressVitalsHistory}>
-              <Text style={GlobalCSS.buttonIconLabel}>History</Text>
+              <Text style={GlobalCss.buttonIconLabel}>History</Text>
             </Button>
           </Col>
-          <Col style={{ height: '100%'}, GlobalCSS.alignItemsCenter}>
+          <Col style={{ height: '100%'}, GlobalCss.alignItemsCenter}>
             <Text>Submit Reading</Text>
               <Text>{'\n'}Temperature:</Text>
               <Item regular>
@@ -84,9 +84,9 @@ export class VitalsView extends Component {
               <Button
                 regular
                 iconLeft
-                style={GlobalCSS.button}
+                style={GlobalCss.button}
                 onPress={this.controller.onPressAddReminder}>
-                <Text style={GlobalCSS.buttonIconLabel}>Update</Text>
+                <Text style={GlobalCss.buttonIconLabel}>Update</Text>
               </Button>
           </Col>
         </Grid>

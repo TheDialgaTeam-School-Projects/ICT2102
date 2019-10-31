@@ -13,8 +13,8 @@ import {
   Text,
   View,
 } from 'native-base';
-import {GlobalCSS} from '../../../css/Global';
-import {CustomHeaderComponent} from '../../Component/CustomHeader';
+import {GlobalCss} from '../../../css/GlobalCss';
+import {HeaderComponent} from '../../Component/Header';
 import {VitalsHistoryController} from '../../../controller/Patient/Vitals/VitalsHistory';
 
 export class VitalsHistoryView extends Component {
@@ -57,9 +57,9 @@ export class VitalsHistoryView extends Component {
   render() {
     return (
         <Container>
-            <CustomHeaderComponent headerTitle="VITALS HISTORY" {...this.props} />
+            <HeaderComponent headerTitle="VITALS HISTORY" {...this.props} />
             <Grid>
-              <Col style={{ height: '100%'}, GlobalCSS.alignItemsCenter}>
+              <Col style={{ height: '100%'}, GlobalCss.alignItemsCenter}>
                 <Text>TEMPERATURE GRAPH HERE</Text>
                 <View>
                   <LineChart
@@ -70,7 +70,7 @@ export class VitalsHistoryView extends Component {
                   />
                 </View>
               </Col>
-              <Col style={{ height: '100%'}, GlobalCSS.alignItemsCenter}>
+              <Col style={{ height: '100%'}, GlobalCss.alignItemsCenter}>
                 <Text>BLOOD PRESSURE GRAPH HERE</Text>
                 <LineChart
                   data = {this.data2}
@@ -81,9 +81,9 @@ export class VitalsHistoryView extends Component {
                 <Button
                   regular
                   iconLeft
-                  style={GlobalCSS.button}
+                  style={GlobalCss.button}
                   onPress={this.controller.onPressBackButton}>
-                  <Text style={GlobalCSS.buttonLabel}>Back</Text>
+                  <Text style={GlobalCss.buttonLabel}>Back</Text>
                 </Button>
               </Col>
             </Grid>

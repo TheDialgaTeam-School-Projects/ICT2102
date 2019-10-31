@@ -80,7 +80,7 @@ const routes = createSwitchNavigator({
         },
         {
           defaultNavigationOptions: () => ({
-            header: <HeaderComponent />,
+            header: <View />,
           }),
         },
       ),
