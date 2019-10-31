@@ -1,6 +1,6 @@
 export const Config = {
-  useInternalCache: true,
-  clearInternalCache: true,
+  useInternalCache: false,
+  clearInternalCache: false,
   staffInformation: {
     staffId: 'test',
     staffName: 'Yong Jian Ming',

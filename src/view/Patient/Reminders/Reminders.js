@@ -27,7 +27,7 @@ export class RemindersView extends Component {
   render() {
     const reminders = this.state.patientModel
       ? this.state.patientModel.getPatientReminders()
-      : [];
+      : null;
 
     return (
       <Container>
@@ -52,17 +52,21 @@ export class RemindersView extends Component {
               <Grid style={GlobalCss.alignItemsCenter}>
                 <Col size={1} />
                 <Col size={4} style={GlobalCss.alignItemsCenter}>
-                  {reminders.map((value, index) => {
-                    return (
-                      <ReminderComponent
-                        key={index}
-                        index={index}
-                        value={value}
-                        onPressEdit={this.controller.onPressEditReminder}
-                        onPressDelete={this.controller.onPressDeleteReminder}
-                      />
-                    );
-                  })}
+                  {reminders
+                    ? reminders.map((value, index) => {
+                        return (
+                          <ReminderComponent
+                            key={index}
+                            index={index}
+                            value={value}
+                            onPressEdit={this.controller.onPressEditReminder}
+                            onPressDelete={
+                              this.controller.onPressDeleteReminder
+                            }
+                          />
+                        );
+                      })
+                    : null}
                 </Col>
                 <Col size={1} />
               </Grid>

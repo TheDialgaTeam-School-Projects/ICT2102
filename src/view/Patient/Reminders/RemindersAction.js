@@ -35,18 +35,18 @@ export class RemindersActionView extends Component {
   }
 
   render() {
-    let headerText = '';
+    let headerText;
 
     if (this.state.action === 'add') {
-      headerText = 'ADD';
+      headerText = 'Add';
     } else if (this.state.action === 'edit') {
-      headerText = 'EDIT';
+      headerText = 'Edit';
     }
 
     return (
       <Container>
         <HeaderComponent
-          headerTitle={`${headerText} REMINDERS`}
+          headerTitle={`${headerText} Reminders`}
           {...this.props}
         />
         <Form>
@@ -57,24 +57,14 @@ export class RemindersActionView extends Component {
               placeholder="Enter Description..."
               onChangeText={this.controller.onChangeTextDescription}
               autoFocus={true}
-              value={
-                this.state.action === 'edit' ? this.state.data.message : ''
-              }
+              value={this.state.description}
             />
           </Item>
           <Item inlineLabel>
             <Label style={GlobalCss.formLabel}>Date / Time:</Label>
             <DatePicker
-              date={
-                this.state.action === 'edit'
-                  ? new Date(this.state.data.dateTime * 1000)
-                  : new Date()
-              }
-              minimumDate={
-                this.state.action === 'edit'
-                  ? new Date(this.state.data.dateTime * 1000)
-                  : new Date()
-              }
+              date={this.state.dateTime}
+              minimumDate={new Date()}
               mode="datetime"
               timeZoneOffsetInMinutes={8 * 60}
               onDateChange={this.controller.onDateChange}

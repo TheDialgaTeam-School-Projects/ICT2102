@@ -20,7 +20,7 @@ export class ReminderComponent extends Component {
         <CardItem>
           <Text style={GlobalCss.reminderComponentText}>
             {`@ ${new Date(this.props.value.dateTime * 1000).toLocaleString(
-              'en',
+              'en-SG',
               {timeZone: 'Asia/Singapore'},
             )}`}
           </Text>

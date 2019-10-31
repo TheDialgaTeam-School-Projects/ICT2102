@@ -42,13 +42,22 @@ export class RemindersController extends Controller {
    * This event triggers when add reminder button is pressed.
    */
   onPressAddReminder() {
-    this.navigate('RemindersAction', {action: 'add'});
+    this.navigate('RemindersAction', {
+      action: 'add',
+      patientModel: this.state.patientModel,
+    });
   }
 
   /**
    * This event triggers when edit reminder button is pressed.
    */
-  onPressEditReminder(index) {}
+  onPressEditReminder(index) {
+    this.navigate('RemindersAction', {
+      action: 'edit',
+      patientModel: this.state.patientModel,
+      index: index,
+    });
+  }
 
   /**
    * This event triggers when delete reminder button is pressed.
