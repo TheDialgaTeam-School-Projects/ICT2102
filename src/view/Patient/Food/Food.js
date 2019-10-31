@@ -79,13 +79,6 @@ export class FoodView extends Component {
                             <Button
                                 regular
                                 iconLeft
-                                style={GlobalCSS.button, { position: 'absolute', bottom: '10%', right: '18%'}}
-                                onPress={this.controller.onPressAddReminder}>
-                                <Text style={GlobalCSS.buttonIconLabel}>Button</Text>
-                            </Button>
-                            <Button
-                                regular
-                                iconLeft
                                 style={GlobalCSS.button, { position: 'absolute', bottom: '10%', right: '3%'}}
                                 onPress={this.controller.onPressAddReminder}>
                                 <Text style={GlobalCSS.buttonIconLabel}>Update</Text>

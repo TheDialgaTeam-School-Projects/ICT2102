@@ -47,7 +47,7 @@ export class VitalsView extends Component {
               regular
               iconLeft
               style={GlobalCSS.button}
-              onPress={this.controller.onPressAddReminder}>
+              onPress={this.controller.onPressVitalsHistory}>
               <Text style={GlobalCSS.buttonIconLabel}>History</Text>
             </Button>
           </Col>

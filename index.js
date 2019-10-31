@@ -13,6 +13,7 @@ import {MedicineView} from './src/view/Patient/Medicine/Medicine';
 import {RemindersActionView} from './src/view/Patient/Reminders/RemindersAction';
 import {VitalsView} from './src/view/Patient/Vitals/Vitals';
 import {FoodView} from './src/view/Patient/Food/Food';
+import {VitalsHistoryView} from './src/view/Patient/Vitals/VitalsHistory';
 
 const routes = createSwitchNavigator({
   Main: createStackNavigator(
@@ -68,12 +69,21 @@ const routes = createSwitchNavigator({
           title: 'Food',
         }),
       },
-      Vitals: {
-        screen: VitalsView,
-        navigationOptions: () => ({
-          title: 'Vitals',
-        }),
-      },
+      Vitals: createStackNavigator(
+        {
+          Vitals: {
+            screen: VitalsView,
+          },
+          VitalsHistory: {
+            screen: VitalsHistoryView,
+          },
+        },
+        {
+          defaultNavigationOptions: () => ({
+            header: <HeaderComponent />,
+          }),
+        },
+      ),
       Faq: {
         screen: RemindersView,
         navigationOptions: () => ({

@@ -13,18 +13,32 @@ import {
 } from 'native-base';
 import {GlobalCSS} from '../../../css/Global';
 import {CustomHeaderComponent} from '../../Component/CustomHeader';
-import {VitalsController} from '../../../controller/Patient/Vitals/Vitals';
+import {VitalsHistoryController} from '../../../controller/Patient/Vitals/VitalsHistory';
 
-export class VitalsHistory extends Component {
+export class VitalsHistoryView extends Component {
   constructor(props) {
     super(props);
-    this.controller = new VitalsController(this);
+    this.controller = new VitalsHistoryController(this);
   }
   render() {
     return (
         <Container>
             <CustomHeaderComponent headerTitle="VITALS HISTORY" {...this.props} />
-            <Text>TEST</Text>
+            <Grid>
+              <Col style={{ height: '100%'}, GlobalCSS.alignItemsCenter}>
+                <Text>TEMPERATURE GRAPH HERE</Text>
+              </Col>
+              <Col style={{ height: '100%'}, GlobalCSS.alignItemsCenter}>
+                <Text>BLOOD PRESSURE GRAPH HERE</Text>
+                <Button
+                  regular
+                  iconLeft
+                  style={GlobalCSS.button}
+                  onPress={this.controller.onPressBackButton}>
+                  <Text style={GlobalCSS.buttonLabel}>Back</Text>
+                </Button>
+              </Col>
+            </Grid>
         </Container>
     )};
 }
