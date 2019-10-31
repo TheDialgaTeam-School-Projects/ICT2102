@@ -12,6 +12,7 @@ import {RemindersView} from './src/view/Patient/Reminders/Reminders';
 import {MedicineView} from './src/view/Patient/Medicine/Medicine';
 import {RemindersActionView} from './src/view/Patient/Reminders/RemindersAction';
 import {VitalsView} from './src/view/Patient/Vitals/Vitals';
+import {FoodView} from './src/view/Patient/Food/Food';
 
 const routes = createSwitchNavigator({
   Main: createStackNavigator(
@@ -62,7 +63,7 @@ const routes = createSwitchNavigator({
         }),
       },
       Food: {
-        screen: RemindersView,
+        screen: FoodView,
         navigationOptions: () => ({
           title: 'Food',
         }),
