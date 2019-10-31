@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import DatePicker from 'react-native-date-picker';
 import {Col, Grid, Row} from 'react-native-easy-grid';
+import RadioGroup from 'react-native-radio-buttons-group';
 import {
   Button,
   Container,
@@ -22,70 +23,84 @@ import {FoodController} from '../../../controller/Patient/Food/Food';
 export class FoodView extends Component {
   constructor(props) {
     super(props);
-    this.controller = new FoodController(this);
-  }
+		this.controller = new FoodController(this);
+		this.state = {
+			bFastSelected: '',
+			lunchSelected: '',
+			dinnerSelected: '',
+			//This will be fetched from database, hardcoded for now
+			bFastData: 
+			[
+				{
+					label: 'Bread',
+					value: 'Bread'
+				},
+				{
+					label: 'Pancakes',
+					value: 'Pancakes'
+				}
+			],
+		};
+	}
+
+	onBFSel = bFastData => this.setState({ bFastData });
+
   render() {
     return (
-        <Container>
-            <CustomHeaderComponent headerTitle="SELECT FOOD" {...this.props} />
-            <Grid>
-                <Row>
-                    <Col style={{ height: '100%'}, GlobalCSS.alignItemsLeft}>
-                        <Text style={{textDecorationLine: "underline", fontSize: 40}}>Breakfast</Text>
-                        <ListItem>
-                            <Left>
-                                <Radio selected={false} selectedColor={"#5cb85c"}/>
-                                <Text>{'\t'}Bread</Text>
-                            </Left>
-                        </ListItem>
-                        <ListItem>
-                            <Left>
-                                <Radio selected={false} selectedColor={"#5cb85c"}/>
-                                <Text>{'\t'}Pancakes</Text>
-                            </Left>
-                        </ListItem>
-                    </Col>
-                    <Col style={{ height: '100%'}, GlobalCSS.alignItemsLeft}>
-                        <Text style={{textDecorationLine: "underline", fontSize: 40}}>Lunch</Text>
-                        <ListItem>
-                            <Left>
-                                <Radio selected={false} selectedColor={"#5cb85c"}/>
-                                <Text>{'\t'}Chicken Rice</Text>
-                            </Left>
-                        </ListItem>
-                        <ListItem>
-                            <Left>
-                                <Radio selected={false} selectedColor={"#5cb85c"}/>
-                                <Text>{'\t'}Vegetarian Meal</Text>
-                            </Left>
-                        </ListItem>
-                    </Col>
-                </Row>
-                <Row>
-                    <Col style={{ height: '100%'}, GlobalCSS.alignItemsLeft}>
-                        <Text style={{textDecorationLine: "underline", fontSize: 40}}>Dinner</Text>
-                        <ListItem>
-                            <Left>
-                                <Radio selected={false} selectedColor={"#5cb85c"}/>
-                                <Text>{'\t'}Burger</Text>
-                            </Left>
-                        </ListItem>
-                        <ListItem>
-                            <Left>
-                                <Radio selected={false} selectedColor={"#5cb85c"}/>
-                                <Text>{'\t'}Chicken Chop</Text>
-                            </Left>
-                        </ListItem>
-                            <Button
-                                regular
-                                iconLeft
-                                style={GlobalCSS.button, { position: 'absolute', bottom: '10%', right: '3%'}}
-                                onPress={this.controller.onPressAddReminder}>
-                                <Text style={GlobalCSS.buttonIconLabel}>Update</Text>
-                            </Button>
-                    </Col>
-                </Row>
-            </Grid>
-        </Container>
+			<Container>
+				<CustomHeaderComponent headerTitle="SELECT FOOD" {...this.props} />
+				<Grid>
+					<Row>
+						<Col style={{ height: '100%'}, GlobalCSS.alignItemsLeft}>
+							<Text style={{textDecorationLine: "underline", fontSize: 40}}>Breakfast</Text>
+							<RadioGroup 
+								radioButtons={this.state.bFastData} 
+								onPress={this.onBFSel}
+								style={{  }}
+								labelStyle={{ fontSize: 14, }}
+							/>
+						</Col>
+						<Col style={{ height: '100%'}, GlobalCSS.alignItemsLeft}>
+							<Text style={{textDecorationLine: "underline", fontSize: 40}}>Lunch</Text>
+							<ListItem>
+								<Left>
+									<Radio selected={false} />
+									<Text>{'\t'}Chicken Rice</Text>
+								</Left>
+							</ListItem>
+							<ListItem>
+								<Left>
+									<Radio selected={false} />
+									<Text>{'\t'}Vegetarian Meal</Text>
+								</Left>
+							</ListItem>
+						</Col>
+					</Row>
+					<Row>
+						<Col style={{ height: '100%'}, GlobalCSS.alignItemsLeft}>
+							<Text style={{textDecorationLine: "underline", fontSize: 40}}>Dinner</Text>
+							<ListItem>
+									<Left>
+											<Radio selected={false} />
+											<Text>{'\t'}Burger</Text>
+									</Left>
+							</ListItem>
+							<ListItem>
+									<Left>
+											<Radio selected={false} />
+											<Text>{'\t'}Chicken Chop</Text>
+									</Left>
+							</ListItem>
+							<Button
+									regular
+									iconLeft
+									style={GlobalCSS.button, { position: 'absolute', bottom: '10%', right: '3%'}}
+									onPress={this.controller.onPressAddReminder}>
+									<Text style={GlobalCSS.buttonIconLabel}>Update</Text>
+							</Button>
+						</Col>
+					</Row>
+				</Grid>
+			</Container>
     )};
 }
