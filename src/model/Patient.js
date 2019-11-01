@@ -7,6 +7,7 @@ export class PatientModel extends Model {
     this.patientName = jsonObj?.patientName ?? '';
     this.patientConditions = jsonObj?.patientConditions ?? [];
     this.patientReminders = jsonObj?.patientReminders ?? [];
+    this.patientVitals = jsonObj?.patientVitals ?? [];
 
     this.getPatientId = this.getPatientId.bind(this);
     this.setPatientId = this.setPatientId.bind(this);
@@ -20,6 +21,9 @@ export class PatientModel extends Model {
     this.addPatientReminders = this.addPatientReminders.bind(this);
     this.deletePatientReminders = this.deletePatientReminders.bind(this);
     this.updatePatientReminders = this.updatePatientReminders.bind(this);
+
+    this.getPatientVitals = this.getPatientVitals.bind(this);
+    this.addPatientVitals = this.addPatientVitals.bind(this);
   }
 
   /**
@@ -125,5 +129,22 @@ export class PatientModel extends Model {
   updatePatientReminders(index, value) {
     this.patientReminders[index] = value;
     this.objectChanged.patientReminders = this.patientReminders;
+  }
+
+  /**
+   * Get patient vitals.
+   * @returns {{dateTime: number, dia: number, pulse: number, sys: number, temp: number}[]}
+   */
+  getPatientVitals() {
+    return this.patientVitals;
+  }
+
+  /**
+   * Add new patient vitals.
+   * @param value Patient vitals to add.
+   */
+  addPatientVitals(value) {
+    this.patientVitals.push(value);
+    this.objectChanged.patientVitals = this.patientVitals;
   }
 }

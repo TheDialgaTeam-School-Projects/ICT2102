@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Dimensions} from 'react-native';
+import {Dimensions, Alert} from 'react-native';
 import DatePicker from 'react-native-date-picker';
 import {Col, Grid, Row} from 'react-native-easy-grid';
 import {LineChart} from "react-native-chart-kit";
@@ -21,6 +21,11 @@ export class VitalsHistoryView extends Component {
   constructor(props) {
     super(props);
     this.controller = new VitalsHistoryController(this);
+    this.state = {
+      temperature: [0],
+      dateTime: [0],
+    };
+    this.willFocusEvent = this.props.navigation.addListener('willFocus', this.controller.willFocus);
   }
 
   chartConfig = {
@@ -33,10 +38,10 @@ export class VitalsHistoryView extends Component {
     barPercentage: 0.5
   };
 
-  data1 = {
-    labels: ['January', 'February', 'March', 'April', 'May', 'June'],
+  tempGraphData = {
+    labels: [],
     datasets: [{
-      data: [ 20, 45, 28, 80, 99, 43 ],
+      data: [],
       color: () => `rgba(134, 65, 244)`, // optional
       strokeWidth: 2 // optional
     }]
@@ -55,6 +60,9 @@ export class VitalsHistoryView extends Component {
   screenHeight = (Dimensions.get("window").height) / 2;
 
   render() {
+    this.tempGraphData.datasets[0].data = this.state.temperature;
+    this.tempGraphData.labels = this.state.dateTime;
+
     return (
         <Container>
             <HeaderComponent headerTitle="VITALS HISTORY" {...this.props} />
@@ -63,7 +71,7 @@ export class VitalsHistoryView extends Component {
                 <Text>TEMPERATURE GRAPH HERE</Text>
                 <View>
                   <LineChart
-                    data = {this.data1}
+                    data = {this.tempGraphData}
                     width = {this.screenWidth}
                     height = {this.screenHeight}
                     chartConfig = {this.chartConfig}
