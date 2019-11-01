@@ -35,15 +35,13 @@ export class MedicineView extends Component {
   async willFocus() {
   const query = await firestore()
       .collection('patients')
-      .get()
-      .then(function(querySnapshot) {
-      console.log("SnapShot"+querySnapshot);
-        querySnapshot.forEach(function(doc) {
-            var data = doc.data();
-            //console.log(data.Medicine);
-            this.setState({ test: data.Medicine });
-            })
-        });
+      .get();
+
+      query.forEach(doc => {
+        var data = doc.data();
+        this.setState({ test: data.Medicine });
+      });
+
     console.log(this.state.test);
   }
 
@@ -51,6 +49,7 @@ export class MedicineView extends Component {
   {
   this.willFocus();
   }
+  
   render() {
     return (
       <Container>
@@ -62,8 +61,8 @@ export class MedicineView extends Component {
                 </CardItem>
                 <CardItem bordered>
                   <Body>
-                    <Text>
-                    {this.state.test}
+                    <Text style={{fontSize: 24}}>
+                    {this.state.test.join('\n\n')}
                     </Text>
                   </Body>
                 </CardItem>
