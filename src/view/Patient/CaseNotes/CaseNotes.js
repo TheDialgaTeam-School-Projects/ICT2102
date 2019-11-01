@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
 import { Col, Grid, Row } from 'react-native-easy-grid';
 import { Container, Header, Button, Content, Icon, Text, View, List, ListItem, Left, Right } from 'native-base';
-import { CustomHeaderComponent } from '../../Component/CustomHeader';
-import { CaseNotesComponent } from './CaseNotesComponent';
-import { CaseNotesController } from '../../../controller/Patient/Case Notes/CaseNotes';
-import { GlobalCSS } from '../../../css/Global';
+import { HeaderComponent } from '../../Component/Header';
+import { CaseNotesController } from '../../../controller/Patient/CaseNotes/CaseNotes';
+import { GlobalCss } from '../../../css/GlobalCss';
 
 export class CaseNotesView extends Component {
   constructor(props) {
@@ -60,7 +59,7 @@ export class CaseNotesView extends Component {
     if (this.state.toggledisplay == "Subjective") {
       return (
         <Container>
-          <CustomHeaderComponent headerTitle="CASE NOTES" {...this.props} />
+          <HeaderComponent headerTitle="CASE NOTES" {...this.props} />
           <View padder />
           <Grid>
             <Row size={11}>
@@ -105,7 +104,7 @@ export class CaseNotesView extends Component {
                   </List>
                 </Content>
               </Col>
-              <Col size={4} style={GlobalCSS.mr1}>
+              <Col size={4} style={GlobalCss.mr1}>
                 
               </Col>
             </Row>
@@ -116,7 +115,7 @@ export class CaseNotesView extends Component {
     if (this.state.toggledisplay == "Objective") {
       return (
         <Container>
-          <CustomHeaderComponent headerTitle="CASE NOTES" {...this.props} />
+          <HeaderComponent headerTitle="CASE NOTES" {...this.props} />
           <View padder />
           <Grid>
             <Row size={11}>
@@ -161,7 +160,7 @@ export class CaseNotesView extends Component {
                   </List>
                 </Content>
               </Col>
-              <Col size={4} style={GlobalCSS.mr1}>
+              <Col size={4} style={GlobalCss.mr1}>
                 <Text>Objective</Text>
               </Col>
             </Row>
@@ -172,7 +171,7 @@ export class CaseNotesView extends Component {
     if (this.state.toggledisplay == "Assessment") {
       return (
         <Container>
-          <CustomHeaderComponent headerTitle="CASE NOTES" {...this.props} />
+          <HeaderComponent headerTitle="CASE NOTES" {...this.props} />
           <View padder />
           <Grid>
             <Row size={11}>
@@ -217,7 +216,7 @@ export class CaseNotesView extends Component {
                   </List>
                 </Content>
               </Col>
-              <Col size={4} style={GlobalCSS.mr1}>
+              <Col size={4} style={GlobalCss.mr1}>
                 <Text>Assessment</Text>
               </Col>
             </Row>
@@ -228,7 +227,7 @@ export class CaseNotesView extends Component {
     if (this.state.toggledisplay == "Plan") {
       return (
         <Container>
-          <CustomHeaderComponent headerTitle="CASE NOTES" {...this.props} />
+          <HeaderComponent headerTitle="CASE NOTES" {...this.props} />
           <View padder />
           <Grid>
             <Row size={11}>
@@ -273,7 +272,7 @@ export class CaseNotesView extends Component {
                   </List>
                 </Content>
               </Col>
-              <Col size={4} style={GlobalCSS.mr1}>
+              <Col size={4} style={GlobalCss.mr1}>
                 <Text>Plan</Text>
               </Col>
             </Row>

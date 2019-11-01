@@ -71,12 +71,8 @@ export class RemindersController extends Controller {
         {
           text: 'YES',
           onPress: async () => {
-            this.state.patientModel.getPatientReminders().splice(index, 1);
-            this.state.patientModel.setPatientReminders(
-              this.state.patientModel.getPatientReminders(),
-            );
+            this.state.patientModel.deletePatientReminders(index);
             await this.state.patientModel.updateDoc();
-
             this.state = {patientModel: this.state.patientModel};
           },
         },

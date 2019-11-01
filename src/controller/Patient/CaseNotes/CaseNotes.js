@@ -8,7 +8,6 @@ export class CaseNotesController extends Controller {
     super(view);
     this.componentDidMount = this.componentDidMount.bind(this);
     this.willFocus = this.willFocus.bind(this);
-    {/*this.onPressAddReminder = this.onPressAddReminder.bind(this);*/}
   }
 
   /**
@@ -44,11 +43,4 @@ export class CaseNotesController extends Controller {
       }
     }
   }
-
-  /**
-   * This event triggers when add reminder button is pressed.
-   */
-  /*onPressAddReminder() {
-    this.navigate('RemindersAction', { action: 'add' });
-  }*/
 }

@@ -19,11 +19,7 @@ export class LoginScreenController extends Controller {
    * This event triggers when the component initialize.
    */
   componentDidMount() {
-    this.state = {
-      staffId: '',
-      password: '',
-      isLoading: false,
-    };
+    this.state = {staffId: '', password: '', isLoading: false};
   }
 
   /**

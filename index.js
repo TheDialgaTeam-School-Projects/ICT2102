@@ -9,7 +9,7 @@ import {PatientInformationView} from './src/view/Main/PatientInformation';
 import {StaffLoginView} from './src/view/Main/StaffLogin';
 import {RegisterPatientView} from './src/view/Main/RegisterPatient';
 import {RemindersView} from './src/view/Patient/Reminders/Reminders';
-import {CaseNotesView}  from './src/view/Patient/Case Notes/CaseNotes';
+import {CaseNotesView} from './src/view/Patient/CaseNotes/CaseNotes';
 import {MedicineView} from './src/view/Patient/Medicine/Medicine';
 import {RemindersActionView} from './src/view/Patient/Reminders/RemindersAction';
 

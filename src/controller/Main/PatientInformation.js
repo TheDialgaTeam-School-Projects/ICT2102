@@ -17,10 +17,6 @@ export class PatientInformationController extends Controller {
    */
   async componentDidMount() {
     this.state = {patientModel: null};
-
-    if (Config.clearInternalCache) {
-      await DeviceCacheManagement.clearDeviceCache();
-    }
   }
 
   /**
@@ -29,6 +25,10 @@ export class PatientInformationController extends Controller {
    */
   async willFocus() {
     try {
+      if (Config.clearInternalCache) {
+        await DeviceCacheManagement.clearDeviceCache();
+      }
+
       this.state = {
         patientModel: await DeviceCacheManagement.getPatientModelFromCache(
           true,

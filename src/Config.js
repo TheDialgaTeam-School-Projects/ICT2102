@@ -1,5 +1,5 @@
 export const Config = {
-  useInternalCache: false,
+  useInternalCache: true,
   clearInternalCache: false,
   staffInformation: {
     staffId: 'test',
@@ -21,7 +21,6 @@ export const Config = {
       },
     ],
   },
-
   /**Patient SOAP**/
   PatientS: [
     {
@@ -31,12 +30,6 @@ export const Config = {
         "Patient was found lying on the floor. An AED was used to revive the patient as no heartbeat was found by the paramedics. " +
         "Patient was brought into the ambulance and admitted into the emergency ward." +
         "Patient has a history of diabetes and is fall prone."
-    },
-  ],
-  PatientO: [
-    {
-      Date: 
-
     },
   ],
 };

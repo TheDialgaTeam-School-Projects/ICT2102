@@ -86,34 +86,18 @@ export class RemindersActionController extends Controller {
 
     try {
       if (this.state.action === 'add') {
-        let patientReminders = this.state.patientModel.getPatientReminders();
-        patientReminders.push({
+        this.state.patientModel.addPatientReminders({
           description: this.state.description,
           dateTime: Math.floor(this.state.dateTime.getTime() / 1000),
         });
-
-        this.state.patientModel.setPatientReminders(patientReminders);
-        await this.state.patientModel.updateDoc();
-
-        this.state = {patientModel: this.state.patientModel};
       } else if (this.state.action === 'edit') {
-        let patientReminders = this.state.patientModel.getPatientReminders()[
-          this.state.index
-        ];
-        patientReminders.description = this.state.description;
-        patientReminders.dateTime = Math.floor(
-          this.state.dateTime.getTime() / 1000,
-        );
-
-        this.state.patientModel.setPatientReminders(
-          this.state.patientModel.getPatientReminders(),
-        );
-        await this.state.patientModel.updateDoc();
-
-        this.state = {patientModel: this.state.patientModel};
+        this.state.patientModel.updatePatientReminders(this.state.index, {
+          description: this.state.description,
+          dateTime: Math.floor(this.state.dateTime.getTime() / 1000),
+        });
       }
-
-      this.state = {isLoading: false};
+      await this.state.patientModel.updateDoc();
+      this.state = {isLoading: false, patientModel: this.state.patientModel};
       this.navigate('Reminders');
     } catch (e) {
       this.state = {isLoading: false};
