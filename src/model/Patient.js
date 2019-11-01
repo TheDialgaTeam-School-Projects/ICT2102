@@ -5,17 +5,23 @@ export class PatientModel extends Model {
     super('patients', docId, 'patientInformation');
     this.patientId = jsonObj?.patientId ?? '';
     this.patientName = jsonObj?.patientName ?? '';
+    this.emergencyContact = jsonObj?.emergencyContact ?? '';
     this.patientConditions = jsonObj?.patientConditions ?? [];
     this.patientReminders = jsonObj?.patientReminders ?? [];
+    this.Address = jsonObj?.Address ?? [];
 
     this.getPatientId = this.getPatientId.bind(this);
     this.setPatientId = this.setPatientId.bind(this);
     this.getPatientName = this.getPatientName.bind(this);
     this.setPatientName = this.setPatientName.bind(this);
+    this.getPatientEmergencyContact = this.getPatientEmergencyContact.bind(this);
+    this.setPatientEmergencyContact = this.setPatientEmergencyContact.bind(this);
     this.getPatientConditions = this.getPatientConditions.bind(this);
     this.setPatientConditions = this.setPatientConditions.bind(this);
     this.getPatientReminders = this.getPatientReminders.bind(this);
     this.setPatientReminders = this.setPatientReminders.bind(this);
+    this.getPatientAddress = this.getPatientAddress.bind(this);
+    this.setPatientAddress = this.setPatientAddress.bind(this);
   }
 
   /**
@@ -62,6 +68,23 @@ export class PatientModel extends Model {
   }
 
   /**
+   * Get patientModel emergency contact.
+   * @returns {string}
+   */
+  getPatientEmergencyContact() {
+    return this.emergencyContact;
+  }
+
+  /**
+   * Set patientModel name.
+   * @param value Patient emergency contact to update.
+   */
+  setPatientEmergencyContact(value) {
+    this.emergencyContact = value;
+    this.objectChanged.emergencyContact = value;
+  }
+
+  /**
    * Get patientModel conditions.
    * @returns {string[]}
    */
@@ -94,4 +117,21 @@ export class PatientModel extends Model {
     this.patientReminders = value;
     this.objectChanged.patientReminders = value;
   }
+
+  /**
+     * Get patientModel address.
+     * @returns address
+     */
+    getPatientAddress() {
+      return this.Address;
+    }
+
+    /**
+     * Set patientModel address.
+     * @param value Patient address to update.
+     */
+    setPatientAddress(value) {
+      this.Address = value;
+      this.objectChanged.Address = value;
+    }
 }

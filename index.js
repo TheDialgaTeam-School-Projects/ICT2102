@@ -11,6 +11,7 @@ import {RegisterPatientView} from './src/view/Main/RegisterPatient';
 import {RemindersView} from './src/view/Patient/Reminders/Reminders';
 import {MedicineView} from './src/view/Patient/Medicine/Medicine';
 import {RemindersActionView} from './src/view/Patient/Reminders/RemindersAction';
+import {ProfileView} from './src/view/Patient/Profile/Profile';
 
 const routes = createSwitchNavigator({
   Main: createStackNavigator(
@@ -78,6 +79,12 @@ const routes = createSwitchNavigator({
           title: 'Faq',
         }),
       },
+      Profile: {
+        screen: ProfileView,
+        navigationOptions: () => ({
+         title: 'Profile',
+        }),
+    },
     },
     {
       tabBarComponent: FooterTabComponent,

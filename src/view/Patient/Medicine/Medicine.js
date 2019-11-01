@@ -41,15 +41,13 @@ export class MedicineView extends Component {
         var data = doc.data();
         this.setState({ test: data.Medicine });
       });
-
-    console.log(this.state.test);
   }
 
   componentDidMount()
   {
   this.willFocus();
   }
-  
+
   render() {
     return (
       <Container>
