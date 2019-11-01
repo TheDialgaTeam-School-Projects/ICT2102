@@ -51,7 +51,7 @@ export class FoodView extends Component {
 				<HeaderComponent headerTitle="SELECT FOOD" {...this.props} />
 				<Grid>
 					<Row>
-						<Col style={{ height: '100%'}, GlobalCss.alignItemsLeft}>
+						<Col style={{ height: '100%', ...GlobalCss.alignItemsFlexStart}}>
 							<Text style={{textDecorationLine: "underline", fontSize: 40}}>Breakfast</Text>
 							<RadioGroup 
 								radioButtons={this.state.bFastData} 
