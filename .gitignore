@@ -57,3 +57,6 @@ buck-out/
 
 # CocoaPods
 /ios/Pods/
+
+# Visual Studio 2015/2017 cache/options directory
+.vs/
