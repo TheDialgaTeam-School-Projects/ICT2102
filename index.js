@@ -95,9 +95,9 @@ const routes = createSwitchNavigator({
       Profile: {
         screen: ProfileView,
         navigationOptions: () => ({
-         title: 'Profile',
+          title: 'Profile',
         }),
-    },
+      },
     },
     {
       tabBarComponent: FooterTabComponent,
@@ -112,7 +112,5 @@ class App extends Component {
     return <AppContainer />;
   }
 }
-
-//Testing123
 
 AppRegistry.registerComponent('Dashboard', () => App);

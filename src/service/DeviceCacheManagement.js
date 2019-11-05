@@ -1,7 +1,9 @@
 import AsyncStorage from '@react-native-community/async-storage';
+import firestore from '@react-native-firebase/firestore';
 import {PatientManagement} from './PatientManagement';
 import {PatientModel} from '../model/Patient';
 import {StaffModel} from '../model/Staff';
+import {Config} from '../Config';
 
 export class DeviceCacheManagement {
   /**
@@ -43,6 +45,23 @@ export class DeviceCacheManagement {
     await AsyncStorage.setItem('patientInformation', patientModel.toJson(true));
 
     return patientModel;
+  }
+
+  /**
+   * Upload to firebase.
+   * @returns {Promise<void>}
+   */
+  static async uploadToFirebase() {
+    const collectionNames = Object.getOwnPropertyNames(Config.firebase);
+
+    for (let i = 0; i < collectionNames.length; i++) {
+      const collectionName = collectionNames[i];
+      let collection = firestore().collection(collectionName);
+
+      for (const object of Config.firebase[collectionName]) {
+        await collection.add(object);
+      }
+    }
   }
 
   /**

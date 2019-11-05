@@ -1,3 +1,5 @@
+import AsyncStorage from '@react-native-community/async-storage';
+import {DeviceCacheManagement} from '../../../service/DeviceCacheManagement';
 import {Controller} from '../../Controller';
 
 export class MedicineController extends Controller {
@@ -8,21 +10,20 @@ export class MedicineController extends Controller {
   }
 
   componentDidMount() {
-    this.state = {medicineModel: null};
+    this.state = {patientModel: null};
   }
 
   async willFocus() {
-      try {
-        this.state = {
-          medicineModel: await DeviceCacheManagement.getPatientModelFromCache(
-            true,
-          ),
-        };
-      } catch (e) {
-        await AsyncStorage.removeItem('patientInformation');
-        this.state = {patientModel: null};
-        this.navigate('RegisterPatient');
-      }
+    try {
+      this.state = {
+        patientModel: await DeviceCacheManagement.getPatientModelFromCache(
+          true,
+        ),
+      };
+    } catch (e) {
+      await AsyncStorage.removeItem('patientInformation');
+      this.state = {patientModel: null};
+      this.navigate('RegisterPatient');
     }
-
+  }
 }

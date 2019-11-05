@@ -29,6 +29,10 @@ export class PatientInformationController extends Controller {
         await DeviceCacheManagement.clearDeviceCache();
       }
 
+      if (Config.uploadToFirebase) {
+        await DeviceCacheManagement.uploadToFirebase();
+      }
+
       this.state = {
         patientModel: await DeviceCacheManagement.getPatientModelFromCache(
           true,
