@@ -16,6 +16,7 @@ import {ProfileView} from './src/view/Patient/Profile/Profile';
 import {VitalsView} from './src/view/Patient/Vitals/Vitals';
 import {FoodView} from './src/view/Patient/Food/Food';
 import {VitalsHistoryView} from './src/view/Patient/Vitals/VitalsHistory';
+import {FAQView} from './src/view/Patient/FAQ/FAQ';
 
 const routes = createSwitchNavigator({
   Main: createStackNavigator(
@@ -87,7 +88,7 @@ const routes = createSwitchNavigator({
         },
       ),
       Faq: {
-        screen: RemindersView,
+        screen: FAQView,
         navigationOptions: () => ({
           title: 'Faq',
         }),
