@@ -74,48 +74,54 @@ export class VitalsView extends Component {
                   <Label style={GlobalCss.formLabel}>Temperature:</Label>
                   <Input
                     style={GlobalCss.formInput}
-                    placeholder="Temperature..."
+                    placeholder="Temperature"
                     autoCorrect={false}
                     onChangeText={(temperature) => this.setState({temperature})}
                   />
+                  <Label style={GlobalCss.formLabel}>&deg;C</Label>
                 </Item>
                 <Item inlineLabel>
                   <Label style={GlobalCss.formLabel}>SYS:</Label>
                   <Input
                     style={GlobalCss.formInput}
-                    placeholder="Systolic Blood Pressure..."
+                    placeholder="Systolic Blood Pressure"
                     autoCorrect={false}
                     onChangeText={(sys) => this.setState({sys})}
                   />
+                  <Label style={GlobalCss.formLabel}>mmHG</Label>
                 </Item>
                 <Item inlineLabel>
                   <Label style={GlobalCss.formLabel}>DIA:</Label>
                   <Input
                     style={GlobalCss.formInput}
-                    placeholder="Diastolic Blood Pressure..."
+                    placeholder="Diastolic Blood Pressure"
                     autoCorrect={false}
                     onChangeText={(dia) => this.setState({dia})}
                   />
+                  <Label style={GlobalCss.formLabel}>mmHG</Label>
                 </Item>
                 <Item inlineLabel>
                   <Label style={GlobalCss.formLabel}>Pulse:</Label>
                   <Input
                     style={GlobalCss.formInput}
-                    placeholder="Pulse..."
+                    placeholder="Pulse"
                     autoCorrect={false}
                     onChangeText={(pulse) => this.setState({pulse})}
                   />
+                  <Label style={GlobalCss.formLabel}>/min</Label>
                 </Item>
                 <View padder />
+                <View style={{ ...GlobalCss.alignItemsCenter }}>
+                  <Button 
+                    regular
+                    iconLeft
+                    style={GlobalCss.button}
+                    onPress={this.controller.onPressUpdateButton}>
+                    <Text style={GlobalCss.buttonIconLabel}>Update</Text>
+                  </Button>
+                </View> 
               </Form>
-              <Button
-                  regular
-                  iconLeft
-                  style={GlobalCss.button}
-                  onPress={this.controller.onPressAddReminder}>
-                  <Text style={GlobalCss.buttonIconLabel}>Update</Text>
-                </Button>
-            </View>              
+            </View>
           </Col>
         </Grid>
       </Container>

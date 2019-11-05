@@ -24,6 +24,9 @@ export class VitalsHistoryView extends Component {
     this.state = {
       temperature: [0],
       dateTime: [0],
+      sys: [0],
+      dia: [0],
+      pulse: [0],
     };
     this.willFocusEvent = this.props.navigation.addListener('willFocus', this.controller.willFocus);
   }
@@ -35,7 +38,8 @@ export class VitalsHistoryView extends Component {
     backgroundGradientToOpacity: 0,
     color: (opacity = 1) => `rgba(0, 0, 0)`,
     strokeWidth: 2, // optional, default 3
-    barPercentage: 0.5
+    barPercentage: 0.5,
+    propsForLabels: { fontSize: 17 }
   };
 
   tempGraphData = {
@@ -47,13 +51,25 @@ export class VitalsHistoryView extends Component {
     }]
   }
 
-  data2 = {
-    labels: ['A', 'B', 'C', 'D', 'E', 'F'],
-    datasets: [{
-      data: [ 20, 45, 28, 80, 99, 1 ],
-      color: () => `rgba(134, 65, 244)`, // optional
-      strokeWidth: 2 // optional
-    }]
+  bpGraphData = {
+    labels: [],
+    datasets: [
+      {
+        data: [],
+        color: () => `rgba(134, 65, 244)`, // optional
+        strokeWidth: 2 // optional
+      },
+      {
+        data: [],
+        color: () => `rgba(0,128,0,1)`, // optional
+        strokeWidth: 2 // optional
+      },
+      {
+        data: [],
+        color: () => `rgba(255, 0, 0, 1)`, // optional
+        strokeWidth: 2 // optional
+      }
+    ]
   }
 
   screenWidth = (Dimensions.get("window").width) / 2;
@@ -63,12 +79,17 @@ export class VitalsHistoryView extends Component {
     this.tempGraphData.datasets[0].data = this.state.temperature;
     this.tempGraphData.labels = this.state.dateTime;
 
+    this.bpGraphData.datasets[0].data = this.state.sys;
+    this.bpGraphData.datasets[1].data = this.state.dia;
+    this.bpGraphData.datasets[2].data = this.state.pulse;
+    this.bpGraphData.labels = this.state.dateTime;
+
     return (
         <Container>
             <HeaderComponent headerTitle="VITALS HISTORY" {...this.props} />
             <Grid>
               <Col style={{ height: '100%'}, GlobalCss.alignItemsCenter}>
-                <Text>TEMPERATURE GRAPH HERE</Text>
+                <Text>10 Latest Temperature Reading</Text>
                 <View>
                   <LineChart
                     data = {this.tempGraphData}
@@ -79,20 +100,26 @@ export class VitalsHistoryView extends Component {
                 </View>
               </Col>
               <Col style={{ height: '100%'}, GlobalCss.alignItemsCenter}>
-                <Text>BLOOD PRESSURE GRAPH HERE</Text>
+                <Text>10 Latest Blood Pressure Reading</Text>
                 <LineChart
-                  data = {this.data2}
+                  data = {this.bpGraphData}
                   width = {this.screenWidth}
                   height = {this.screenHeight}
                   chartConfig = {this.chartConfig}
                 />
-                <Button
-                  regular
-                  iconLeft
-                  style={GlobalCss.button}
-                  onPress={this.controller.onPressBackButton}>
-                  <Text style={GlobalCss.buttonLabel}>Back</Text>
-                </Button>
+                <Text style={{color: 'green'}}>Systolic</Text>
+                <Text style={{color: 'blue'}}>Diabolic</Text>
+                <Text style={{color: 'red'}}>Pulse</Text>
+                <View padder />
+                <View style={{ ...GlobalCss.alignItemsCenter }}>
+                  <Button
+                    regular
+                    iconLeft
+                    style={GlobalCss.button}
+                    onPress={this.controller.onPressBackButton}>
+                    <Text style={GlobalCss.buttonLabel}>Back</Text>
+                  </Button>
+                </View>
               </Col>
             </Grid>
         </Container>
