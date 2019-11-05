@@ -20,15 +20,11 @@ export class PatientModel extends Model {
     this.setPatientConditions = this.setPatientConditions.bind(this);
     this.getPatientReminders = this.getPatientReminders.bind(this);
     this.setPatientReminders = this.setPatientReminders.bind(this);
-<<<<<<< HEAD
     this.getPatientAddress = this.getPatientAddress.bind(this);
     this.setPatientAddress = this.setPatientAddress.bind(this);
-=======
-
     this.addPatientReminders = this.addPatientReminders.bind(this);
     this.deletePatientReminders = this.deletePatientReminders.bind(this);
     this.updatePatientReminders = this.updatePatientReminders.bind(this);
->>>>>>> 38b8fe3e1b3fde8bbd24aeb6ba98645f089cc196
   }
 
   /**
@@ -75,7 +71,6 @@ export class PatientModel extends Model {
   }
 
   /**
-<<<<<<< HEAD
    * Get patientModel emergency contact.
    * @returns {string}
    */
@@ -94,9 +89,7 @@ export class PatientModel extends Model {
 
   /**
    * Get patientModel conditions.
-=======
    * Get patient conditions.
->>>>>>> 38b8fe3e1b3fde8bbd24aeb6ba98645f089cc196
    * @returns {string[]}
    */
   getPatientConditions() {
@@ -130,7 +123,6 @@ export class PatientModel extends Model {
   }
 
   /**
-<<<<<<< HEAD
      * Get patientModel address.
      * @returns address
      */
@@ -145,8 +137,8 @@ export class PatientModel extends Model {
     setPatientAddress(value) {
       this.Address = value;
       this.objectChanged.Address = value;
-    }
-=======
+    } 
+   /**
    * Add new patient reminders.
    * @param value Patient reminders to add.
    */
@@ -173,5 +165,4 @@ export class PatientModel extends Model {
     this.patientReminders[index] = value;
     this.objectChanged.patientReminders = this.patientReminders;
   }
->>>>>>> 38b8fe3e1b3fde8bbd24aeb6ba98645f089cc196
 }
