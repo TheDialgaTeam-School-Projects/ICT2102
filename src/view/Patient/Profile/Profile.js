@@ -25,7 +25,6 @@ import AsyncStorage from '@react-native-community/async-storage';
 export class ProfileView extends Component {
   constructor(props) {
     super(props);
-    //this.controller = new MedicineController(this);
     this.state = {
         patientModel: null,
     };
@@ -48,7 +47,6 @@ export class ProfileView extends Component {
     const emergencyContact = this.state.patientModel ? this.state.patientModel.getPatientEmergencyContact() : '';
     const address = this.state.patientModel ? this.state.patientModel.getPatientAddress() : [];
     const photo = this.state.patientModel ? this.state.patientModel.getPhoto() : '';
-    console.log(photo);
     return (
       <Container>
         <HeaderComponent headerTitle="PROFILE" {...this.props} />
