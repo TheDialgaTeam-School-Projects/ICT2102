@@ -19,10 +19,7 @@ export class RegisterPatientController extends Controller {
    * This event triggers when the component initialize.
    */
   componentDidMount() {
-    this.state = {
-      patientId: '',
-      isLoading: false,
-    };
+    this.state = {patientId: '', isLoading: false};
   }
 
   /**

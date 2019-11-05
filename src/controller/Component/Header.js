@@ -1,7 +1,6 @@
 import AsyncStorage from '@react-native-community/async-storage';
 import {Controller} from '../Controller';
-import {StaffModel} from '../../model/Staff';
-import {PatientModel} from '../../model/Patient';
+import {DeviceCacheManagement} from '../../service/DeviceCacheManagement';
 
 export class HeaderController extends Controller {
   constructor(view) {
@@ -23,18 +22,10 @@ export class HeaderController extends Controller {
    * @returns {Promise<void>}
    */
   async willFocus() {
-    const staffJson = await AsyncStorage.getItem('staffInformation');
-    const patientJson = await AsyncStorage.getItem('patientInformation');
-
-    if (staffJson) {
-      const staffModel = StaffModel.createModel(JSON.parse(staffJson));
-      this.state = {staffModel: staffModel};
-    }
-
-    if (patientJson) {
-      const patientModel = PatientModel.createModel(JSON.parse(patientJson));
-      this.state = {patientModel: patientModel};
-    }
+    this.state = {
+      staffModel: await DeviceCacheManagement.getStaffModelFromCache(),
+      patientModel: await DeviceCacheManagement.getPatientModelFromCache(),
+    };
   }
 
   /**

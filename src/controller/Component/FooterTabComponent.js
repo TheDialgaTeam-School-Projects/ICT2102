@@ -8,14 +8,23 @@ export class FooterTabComponentController extends Controller {
     this.keyboardDidHide = this.keyboardDidHide.bind(this);
   }
 
+  /**
+   * This event triggers when the component initialize.
+   */
   componentDidMount() {
     this.state = {keyboardUp: false};
   }
 
+  /**
+   * This event triggers when the keyboard did show.
+   */
   keyboardDidShow() {
     this.state = {keyboardUp: true};
   }
 
+  /**
+   * This event triggers when the keyboard did hide.
+   */
   keyboardDidHide() {
     this.state = {keyboardUp: false};
   }
