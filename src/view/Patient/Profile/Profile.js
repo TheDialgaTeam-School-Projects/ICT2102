@@ -1,6 +1,6 @@
 import firestore from '@react-native-firebase/firestore';
 import React, {Component} from 'react';
-import {Alert} from 'react-native';
+import {Alert, Image} from 'react-native';
 import {Col, Grid, Row} from 'react-native-easy-grid';
 import {DeviceCacheManagement} from '../../../service/DeviceCacheManagement';
 import {
@@ -47,93 +47,78 @@ export class ProfileView extends Component {
     const id = this.state.patientModel ? this.state.patientModel.getPatientId() : '';
     const emergencyContact = this.state.patientModel ? this.state.patientModel.getPatientEmergencyContact() : '';
     const address = this.state.patientModel ? this.state.patientModel.getPatientAddress() : [];
-
+    const photo = this.state.patientModel ? this.state.patientModel.getPhoto() : '';
+    console.log(photo);
     return (
       <Container>
         <HeaderComponent headerTitle="PROFILE" {...this.props} />
-          <View style={{flex: 1}}>
-            <Grid>
-              <Col>
-                </Col>
-                <Row size={-1}>
-                  <Col size={-1}>
-                    <Text style={{fontWeight: 'bold', fontSize: 32}}>Name: </Text>
-                  </Col>
-                  <Col>
-                    <Text style={{fontSize: 32}}>{name}</Text>
-                  </Col>
-                </Row>
-                <Row size={-1}>
-                  <Col size={-1}>
-                    <Text style={{fontWeight: 'bold', fontSize: 32}}>Patient ID: </Text>
-                  </Col>
-                  <Col>
-                    <Text style={{fontSize: 32}}>{id}</Text>
-                  </Col>
-                </Row>
-                <Row size={-1}>
-                  <Col size={-1}>
-                    <Text style={{fontWeight: 'bold', fontSize: 32}}>Emergency Contact: </Text>
-                  </Col>
-                  <Col>
-                    <Text style={{fontSize: 32}}>{emergencyContact}</Text>
-                   </Col>
-                </Row>
-                <Row size={-1}>
-                  <Col size={-1}>
-                    <Text style={{fontWeight: 'bold', fontSize: 32}}>Address: </Text>
-                  </Col>
-                  <Col>
-                    <Text style={{fontSize: 32}}>{address.join('\n')}</Text>
-                  </Col>
-                </Row>
-                <Row>
-                  <Col>
-              </Col>
-                <Col>
-                  <Button style= {{...GlobalCss.button}}
-                    width={150}
-                    onPress={() => Alert.alert(
-                     'Confirm Remove Patient',
-                     'Are you sure you want to remove patient?',
-                     [
-                       {
-                         text: 'Cancel',
-                         style: 'cancel',
-                       },
-                       {text: 'OK', onPress: async () => {
-                       await AsyncStorage.removeItem('patientInformation');
-                       this.props.navigation.navigate('RegisterPatient');
-                       }},
-                     ],
-                     {cancelable: false},
-                   )}>
-                    <Text>Remove</Text>
-                  </Button>
-                </Col>
-                <Col>
-                  <Button style= {{...GlobalCss.button}}
-                  width={150}
-                  onPress={() => {
-                  Alert.alert(
-                    'Confirm Change Patient',
-                    'Are you sure you want to change patient?',
-                    [,
-                      {
-                        text: 'Cancel',
-                        style: 'cancel',
-                      },
-                      {text: 'OK', onPress: () => this.props.navigation.navigate('RegisterPatient')},
+         <Grid>
+           <Col style={{height: '100%',...GlobalCss.alignItemsCenter, ...GlobalCss.p2, ...GlobalCss.m2}}>
+             <Row size={-1}>
+               <Image
+               style={{ height: 250, width: 250  }}
+               source={{uri: 'data:image/png;base64,' + photo}}
+               />
+             </Row>
+             <Row size={-1}>
+               <Text style={{fontWeight: 'bold', fontSize: 32}}>Name: </Text>
+               <Text style={{fontSize: 32}}>{name}</Text>
+             </Row>
+             <Row size={-1}>
+               <Text style={{fontWeight: 'bold', fontSize: 32}}>Patient ID: </Text>
+               <Text style={{fontSize: 32}}>{id}</Text>
+             </Row>
+             <Row size={-1}>
+               <Text style={{fontWeight: 'bold', fontSize: 32}}>Emergency Contact: </Text>
+               <Text style={{fontSize: 32}}>{emergencyContact}</Text>
+             </Row>
+             <Row size={-1}>
+               <Text style={{fontWeight: 'bold', fontSize: 32, ...GlobalCss.alignItemsLeft}}>Address: </Text>
+               <Text style={{fontSize: 32, ...GlobalCss.alignItemsRight}}>{address.join('\n')}</Text>
+             </Row>
+             <Row>
+               <Col style={{...GlobalCss.alignItemsFlexEnd, ...GlobalCss.pr2}}>
+                 <Button style= {{...GlobalCss.button}}
+                   width={150}
+                   onPress={() => Alert.alert(
+                   'Confirm Remove Patient',
+                   'Are you sure you want to remove patient?',
+                    [
+                     {
+                       text: 'Cancel',
+                     },
+                     {text: 'OK', onPress: async () => {
+                      await AsyncStorage.removeItem('patientInformation');
+                      this.props.navigation.navigate('RegisterPatient');
+                     }},
                     ],
                     {cancelable: false},
-                  );
-                  }}>
-                    <Text>Change</Text>
-                  </Button>
-                </Col >
-              </Row>
-            </Grid>
-          </View>
+                   )}>
+                   <Text>Remove</Text>
+                 </Button>
+               </Col>
+               <Col style={{...GlobalCss.alignItemsFlexStart, ...GlobalCss.pl2}}>
+                 <Button style= {{...GlobalCss.button}}
+                 width={150}
+                 onPress={() => {
+                 Alert.alert(
+                  'Confirm Change Patient',
+                  'Are you sure you want to change patient?',
+                   [,
+                    {
+                     text: 'Cancel',
+                    },
+                    {text: 'OK', onPress: () => this.props.navigation.navigate('RegisterPatient')},
+                   ],
+                   {cancelable: false},
+                 );
+                }}>
+                <Text>Change</Text>
+               </Button>
+             </Col >
+            </Row>
+           </Col>
+         </Grid>
       </Container>
     );
   }

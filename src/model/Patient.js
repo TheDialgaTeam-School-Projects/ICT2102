@@ -17,17 +17,14 @@ export class PatientModel extends Model {
       Subjective: [],
     };
     this.patientVitals = jsonObj?.patientVitals ?? [];
+    this.photo = jsonObj?.photo ?? '';
 
     this.getPatientId = this.getPatientId.bind(this);
     this.setPatientId = this.setPatientId.bind(this);
     this.getPatientName = this.getPatientName.bind(this);
     this.setPatientName = this.setPatientName.bind(this);
-    this.getPatientEmergencyContact = this.getPatientEmergencyContact.bind(
-      this,
-    );
-    this.setPatientEmergencyContact = this.setPatientEmergencyContact.bind(
-      this,
-    );
+    this.getPatientEmergencyContact = this.getPatientEmergencyContact.bind(this,);
+    this.setPatientEmergencyContact = this.setPatientEmergencyContact.bind(this,);
     this.getPatientConditions = this.getPatientConditions.bind(this);
     this.setPatientConditions = this.setPatientConditions.bind(this);
     this.getPatientReminders = this.getPatientReminders.bind(this);
@@ -37,6 +34,7 @@ export class PatientModel extends Model {
     this.deletePatientReminders = this.deletePatientReminders.bind(this);
     this.updatePatientReminders = this.updatePatientReminders.bind(this);
     this.getPatientMedicine = this.getPatientMedicine.bind(this);
+    this.getPhoto = this.getPhoto.bind(this);
   }
 
   /**
@@ -172,5 +170,9 @@ export class PatientModel extends Model {
 
   getPatientMedicine() {
     return this.Medicine;
+  }
+
+  getPhoto() {
+    return this.photo;
   }
 }
