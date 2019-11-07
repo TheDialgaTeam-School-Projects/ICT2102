@@ -12,7 +12,6 @@
     "@react-native-community/async-storage": "^1.6.2",
     "@react-native-firebase/app": "^6.0.2",
     "@react-native-firebase/firestore": "^6.0.2",
-    "accordion-collapse-react-native": "^0.1.11",
     "native-base": "^2.13.8",
     "react": "16.9.0",
     "react-native": "0.61.2",
