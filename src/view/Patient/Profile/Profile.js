@@ -54,7 +54,7 @@ export class ProfileView extends Component {
            <Col style={{height: '100%',...GlobalCss.alignItemsCenter, ...GlobalCss.p2, ...GlobalCss.m2}}>
              <Row size={-1}>
                <Image
-               style={{ height: 250, width: 250  }}
+               style={{ height: 280, width: 230  }}
                source={{uri: 'data:image/png;base64,' + photo}}
                />
              </Row>
