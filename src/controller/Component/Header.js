@@ -8,6 +8,7 @@ export class HeaderController extends Controller {
     this.componentDidMount = this.componentDidMount.bind(this);
     this.willFocus = this.willFocus.bind(this);
     this.onPressLogoutButton = this.onPressLogoutButton.bind(this);
+    this.onPressUserButton = this.onPressUserButton.bind(this);
   }
 
   /**
@@ -35,5 +36,13 @@ export class HeaderController extends Controller {
   async onPressLogoutButton() {
     await AsyncStorage.removeItem('staffInformation');
     this.navigate('PatientInformation');
+  }
+
+  /**
+   * This event triggers when the user button is pressed.
+   * @returns {Promise<void>}
+   */
+  async onPressUserButton() {
+    this.navigate('Profile');
   }
 }
