@@ -32,7 +32,7 @@ export const Config = {
           '#08-48',
           'Singapore 650039',
         ],
-        emergencyContact: 91230056,
+        patientEmergencyContact: 91230056,
         patientConditions: ['Diabetes', 'Fall Prone'],
         patientReminders: [
           {
@@ -44,7 +44,7 @@ export const Config = {
             description: 'Test',
           },
         ],
-        medicine: [
+        patientMedicines: [
           'Insulin Jab - 3 times a day (before meals)',
           'Panadol - 2 tablets a day (1 in day & 1 at night)',
         ],
