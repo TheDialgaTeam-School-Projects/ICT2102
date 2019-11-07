@@ -52,5 +52,6 @@ export class DeviceCacheManagement {
   static async clearDeviceCache() {
     await AsyncStorage.removeItem('staffInformation');
     await AsyncStorage.removeItem('patientInformation');
+    await AsyncStorage.removeItem('mealInformation');
   }
 }

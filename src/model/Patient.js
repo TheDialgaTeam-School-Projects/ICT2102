@@ -8,6 +8,7 @@ export class PatientModel extends Model {
     this.patientConditions = jsonObj?.patientConditions ?? [];
     this.patientReminders = jsonObj?.patientReminders ?? [];
     this.patientVitals = jsonObj?.patientVitals ?? [];
+    this.patientMeals = jsonObj?.patientMeals ?? [];
 
     this.getPatientId = this.getPatientId.bind(this);
     this.setPatientId = this.setPatientId.bind(this);
@@ -24,6 +25,7 @@ export class PatientModel extends Model {
 
     this.getPatientVitals = this.getPatientVitals.bind(this);
     this.addPatientVitals = this.addPatientVitals.bind(this);
+    this.addPatientFood = this.addPatientFood.bind(this);
   }
 
   /**
@@ -146,5 +148,14 @@ export class PatientModel extends Model {
   addPatientVitals(value) {
     this.patientVitals.push(value);
     this.objectChanged.patientVitals = this.patientVitals;
+  }
+
+  /**
+   * Add new patient food.
+   * @param value Patient food to add.
+   */
+  addPatientFood(value) {
+    this.patientMeals.push(value);
+    this.objectChanged.patientMeals = this.patientMeals;
   }
 }
