@@ -36,6 +36,10 @@ export class FooterTabComponent extends Component {
       <Footer>
         <FooterTab>
           {this.props.navigation.state.routes.map((route, index) => {
+            if (this.props.navigation.state.routes.length - 1 === index) {
+              return null;
+            }
+
             return (
               <Button
                 key={index}

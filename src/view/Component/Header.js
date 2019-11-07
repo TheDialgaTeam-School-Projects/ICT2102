@@ -35,7 +35,11 @@ export class HeaderComponent extends Component {
     ) : null;
 
     const patientButton = this.state.patientModel ? (
-      <Button rounded bordered style={GlobalCss.buttonHeader}>
+      <Button
+        rounded
+        bordered
+        style={GlobalCss.buttonHeader}
+        onPress={this.controller.onPressUserButton}>
         <Icon type="FontAwesome5" name="user" />
       </Button>
     ) : null;
