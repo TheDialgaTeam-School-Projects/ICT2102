@@ -56,6 +56,9 @@ export class VitalsController extends Controller {
     else if(isNaN(this.state.temperature) || isNaN(this.state.sys) || isNaN(this.state.dia) || isNaN(this.state.pulse)){
       Alert.alert('Only numbers are allowed!');
     }
+    else if(this.state.temperature < 1 || this.state.sys < 1 || this.state.dia < 1 || this.state.pulse < 1){
+      Alert.alert('Invalid Input! No negative numbers!');
+    }
     else{
       this.state.patientModel.addPatientVitals({
         temp: this.state.temperature,
