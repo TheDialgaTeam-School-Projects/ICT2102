@@ -124,10 +124,7 @@ export class FoodView extends Component {
               <Button
                 regular
                 iconLeft
-                style={
-                  (GlobalCss.button,
-                  {position: 'absolute', bottom: '10%', right: '3%'})
-                }
+                style={{position: 'absolute', bottom: '10%', right: '3%', ...GlobalCss.button}}
                 onPress={this.controller.onPressUpdateButton}>
                 <Text style={GlobalCss.buttonIconLabel}>Update</Text>
               </Button>

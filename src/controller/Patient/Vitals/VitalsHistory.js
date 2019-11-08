@@ -28,8 +28,8 @@ export class VitalsHistoryController extends Controller {
       let arrDia = [];
       let arrPulse = [];
       
-      if(vitals.length > 10){
-        for(i = vitals.length-1; i > vitals.length - 11; i--){
+      if(vitals.length > 7){
+        for(i = vitals.length-1; i > vitals.length - 8; i--){
           arrTemp.push(vitals[i].temp);
           var a = new Date(vitals[i].dateTime * 1000);
           var hour = a.getHours() + 8;
