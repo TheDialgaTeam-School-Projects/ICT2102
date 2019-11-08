@@ -27,3 +27,7 @@ You are required to have xcode and have the required dependencies install before
 ## Additional Note
 This application is only optimized for Android tablets. (Application that require a big screen.) Your multipurpose mobile phone will not work as intended.
 It is not tested on Mac devices.
+
+## Virtual Device
+1. Tablet (Pixel C)
+2. API (Pie/9.0)
