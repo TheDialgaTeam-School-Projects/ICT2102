@@ -9,6 +9,8 @@ export class PatientModel extends Model {
     this.emergencyContact = jsonObj?.emergencyContact ?? '';
     this.patientConditions = jsonObj?.patientConditions ?? [];
     this.patientReminders = jsonObj?.patientReminders ?? [];
+    this.patientVitals = jsonObj?.patientVitals ?? [];
+    this.patientMeals = jsonObj?.patientMeals ?? [];
     this.Medicine = jsonObj?.Medicine ?? [];
     this.patientCaseNotes = jsonObj?.patientCaseNotes ?? {
       Assessment: [],
@@ -16,8 +18,6 @@ export class PatientModel extends Model {
       Plan: [],
       Subjective: [],
     };
-    this.patientVitals = jsonObj?.patientVitals ?? [];
-
     this.getPatientId = this.getPatientId.bind(this);
     this.setPatientId = this.setPatientId.bind(this);
     this.getPatientName = this.getPatientName.bind(this);
@@ -37,6 +37,9 @@ export class PatientModel extends Model {
     this.deletePatientReminders = this.deletePatientReminders.bind(this);
     this.updatePatientReminders = this.updatePatientReminders.bind(this);
     this.getPatientMedicine = this.getPatientMedicine.bind(this);
+    this.getPatientVitals = this.getPatientVitals.bind(this);
+    this.addPatientVitals = this.addPatientVitals.bind(this);
+    this.addPatientFood = this.addPatientFood.bind(this);
   }
 
   /**
@@ -172,5 +175,31 @@ export class PatientModel extends Model {
 
   getPatientMedicine() {
     return this.Medicine;
+  }
+
+  /**
+   * Get patient vitals.
+   * @returns {{dateTime: number, dia: number, pulse: number, sys: number, temp: number}[]}
+   */
+  getPatientVitals() {
+    return this.patientVitals;
+  }
+
+  /**
+   * Add new patient vitals.
+   * @param value Patient vitals to add.
+   */
+  addPatientVitals(value) {
+    this.patientVitals.push(value);
+    this.objectChanged.patientVitals = this.patientVitals;
+  }
+
+  /**
+   * Add new patient food.
+   * @param value Patient food to add.
+   */
+  addPatientFood(value) {
+    this.patientMeals.push(value);
+    this.objectChanged.patientMeals = this.patientMeals;
   }
 }
