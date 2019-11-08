@@ -88,37 +88,45 @@ export class VitalsHistoryView extends Component {
         <Container>
             <HeaderComponent headerTitle="VITALS HISTORY" {...this.props} />
             <Grid>
-              <Col style={{ height: '100%'}, GlobalCss.alignItemsCenter}>
-                <Text>10 Latest Temperature Reading</Text>
-                <View>
+              <Col style={{ height: '100%', ...GlobalCss.justifyContentFlexStart}}>
+                <View style={{...GlobalCss.alignItemsCenter}}>
+                  <Text style={{...GlobalCss.fontSizeLarge}}>7 Latest Temperature Reading</Text>
+                  <View padder />
+                  <View>
+                    <LineChart
+                      data = {this.tempGraphData}
+                      width = {this.screenWidth}
+                      height = {this.screenHeight}
+                      chartConfig = {this.chartConfig}
+                    />
+                  </View>
+                </View>
+              </Col>
+              <Col style={{ height: '100%', ...GlobalCss.justifyContentFlexStart}}>
+                <View style={{...GlobalCss.alignItemsCenter}}>
+                  <Text style={{...GlobalCss.fontSizeLarge}}>7 Latest Blood Pressure Reading</Text>
+                  <View padder />
                   <LineChart
-                    data = {this.tempGraphData}
+                    data = {this.bpGraphData}
                     width = {this.screenWidth}
                     height = {this.screenHeight}
                     chartConfig = {this.chartConfig}
                   />
                 </View>
-              </Col>
-              <Col style={{ height: '100%'}, GlobalCss.alignItemsCenter}>
-                <Text>10 Latest Blood Pressure Reading</Text>
-                <LineChart
-                  data = {this.bpGraphData}
-                  width = {this.screenWidth}
-                  height = {this.screenHeight}
-                  chartConfig = {this.chartConfig}
-                />
-                <Text style={{color: 'green'}}>Systolic</Text>
-                <Text style={{color: 'blue'}}>Diabolic</Text>
-                <Text style={{color: 'red'}}>Pulse</Text>
-                <View padder />
-                <View style={{ ...GlobalCss.alignItemsCenter }}>
+                <View style={{...GlobalCss.alignItemsFlexStart}}>
+                  <Text style={{...GlobalCss.fontSizeLarge}}>Legend:</Text>
+                  <Text style={{color: 'green', ...GlobalCss.fontSizeSmall}}>Systolic</Text>
+                  <Text style={{color: 'blue', ...GlobalCss.fontSizeSmall}}>Diabolic</Text>
+                  <Text style={{color: 'red', ...GlobalCss.fontSizeSmall}}>Pulse</Text>
+                </View>
+                <View style={{...GlobalCss.alignItemsFlexEnd}}>
                   <Button
-                    regular
-                    iconLeft
-                    style={GlobalCss.button}
-                    onPress={this.controller.onPressBackButton}>
-                    <Text style={GlobalCss.buttonLabel}>Back</Text>
-                  </Button>
+                      regular
+                      iconLeft
+                      style={{position: 'absolute', bottom: '10%', right: '3%', ...GlobalCss.button}}
+                      onPress={this.controller.onPressBackButton}>
+                      <Text style={GlobalCss.buttonIconLabel}>Back</Text>
+                    </Button>
                 </View>
               </Col>
             </Grid>
