@@ -22,5 +22,6 @@ export const HeaderCss = StyleSheet.create({
   headerRightText: {
     ...FontSizeCss.fontSizeXSmall,
     color: Color.headerTextColor,
+    textAlign: 'right',
   },
 });

@@ -23,18 +23,7 @@ export class HeaderComponent extends Component {
   }
 
   render() {
-    const leftHeader = this.state.patientModel ? (
-      <Row style={GlobalCss.alignItemsCenter}>
-        <Col style={GlobalCss.pl2}>
-          <Text style={GlobalCss.headerLeftText}>
-            {this.state.patientModel.getPatientName()}
-          </Text>
-          <Text style={GlobalCss.headerLeftText}>{'Bed 01'}</Text>
-        </Col>
-      </Row>
-    ) : null;
-
-    const patientButton = this.state.patientModel ? (
+    const patientButton = this.state.staffModel ? (
       <Button
         rounded
         bordered
@@ -44,12 +33,23 @@ export class HeaderComponent extends Component {
       </Button>
     ) : null;
 
+    const leftHeader = this.state.patientModel ? (
+      <Row style={GlobalCss.alignItemsCenter}>
+        <Col style={GlobalCss.pl2}>
+          <Text style={GlobalCss.headerLeftText}>
+            {this.state.patientModel.getPatientName()}
+          </Text>
+          <Text style={GlobalCss.headerLeftText}>{'Bed 01'}</Text>
+        </Col>
+        <Col style={GlobalCss.alignItemsFlexStart}>{patientButton}</Col>
+      </Row>
+    ) : null;
+
     const rightHeader = this.state.staffModel ? (
       <Row style={GlobalCss.alignItemsCenter}>
-        <Col style={GlobalCss.alignItemsFlexEnd}>{patientButton}</Col>
-        <Col style={GlobalCss.p2}>
+        <Col style={GlobalCss.pr2}>
           <Text style={{...GlobalCss.pb1, ...GlobalCss.headerRightText}}>
-            {`Logged in as\n${this.state.staffModel.getStaffName()}`}
+            {`Logged in as ${this.state.staffModel.getStaffName()}`}
           </Text>
           <Button
             small
