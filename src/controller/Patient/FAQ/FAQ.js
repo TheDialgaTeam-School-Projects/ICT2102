@@ -4,7 +4,7 @@ import { PatientModel } from '../../../model/Patient';
 import { PatientManagement } from '../../../service/PatientManagement';
 import { DeviceCacheManagement } from '../../../service/DeviceCacheManagement';
 
-export class CaseNotesController extends Controller {
+export class FAQController extends Controller {
   constructor(view) {
     super(view);
     this.componentDidMount = this.componentDidMount.bind(this);
