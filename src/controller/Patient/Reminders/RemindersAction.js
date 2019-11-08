@@ -1,5 +1,6 @@
 import {Controller} from '../../Controller';
 import {Alert} from 'react-native';
+import {VariableAssertion} from '../../../VariableAssertion';
 
 export class RemindersActionController extends Controller {
   constructor(view) {
@@ -85,6 +86,14 @@ export class RemindersActionController extends Controller {
     this.state = {isLoading: true};
 
     try {
+      if (
+        !VariableAssertion.assertStringIsNotNullOrEmpty(this.state.description)
+      ) {
+        this.state = {isLoading: false};
+        Alert.alert('Error', 'Description is empty.', [{text: 'OK'}]);
+        return;
+      }
+
       if (this.state.action === 'add') {
         this.state.patientModel.addPatientReminders({
           description: this.state.description,

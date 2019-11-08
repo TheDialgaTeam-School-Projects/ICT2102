@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {Col, Grid, Row} from 'react-native-easy-grid';
-import {Container, Content, Accordion, View} from 'native-base';
+import {Container, Accordion, View} from 'native-base';
 import {HeaderComponent} from '../../Component/Header';
 import {FAQController} from '../../../controller/Patient/FAQ/FAQ';
 
@@ -73,13 +73,11 @@ export class FAQView extends Component {
         <Grid>
           <Row size={11}>
             <Col size={11}>
-              <Content>
-                <Accordion
-                  dataArray={dataArray}
-                  animation={true}
-                  expanded={true}
-                />
-              </Content>
+              <Accordion
+                dataArray={dataArray}
+                animation={true}
+                expanded={true}
+              />
             </Col>
           </Row>
         </Grid>
